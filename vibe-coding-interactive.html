@@ -102,6 +102,7 @@
 
         .retro-btn { transition: all 0.1s ease; }
         .retro-btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0px #2B211B !important; }
+        .tab-active { outline: 3px solid #2B211B; outline-offset: 2px; transform: translate(2px, 2px); box-shadow: 2px 2px 0px #2B211B !important; }
 
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #EBE5D3; border-left: 2px solid #2B211B; }
@@ -142,10 +143,10 @@
                 <button id="audio-toggle" onclick="toggleAudio()" class="retro-btn bg-sage text-ink font-mono font-bold text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro flex items-center gap-2 hover:bg-sage-light" dir="ltr">
                     <i id="audio-icon" class="fa-solid fa-volume-xmark"></i> <span id="audio-status">SOUND: OFF</span>
                 </button>
-                <button onclick="switchTab('guide')" class="retro-btn bg-mustard text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-mustard-light" dir="ltr">
+                <button id="tab-btn-guide" onclick="switchTab('guide')" class="retro-btn tab-active bg-mustard text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-mustard-light" dir="ltr">
                     <i class="fa-solid fa-book-open ml-1"></i> GUIDE
                 </button>
-                <button onclick="switchTab('terminal')" class="retro-btn bg-coral text-cream font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-coral-dark" dir="ltr">
+                <button id="tab-btn-terminal" onclick="switchTab('terminal')" class="retro-btn bg-coral text-cream font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-coral-dark" dir="ltr">
                     <i class="fa-solid fa-terminal ml-1"></i> ASK PIXEL
                 </button>
             </div>
@@ -603,14 +604,25 @@
             playBeep(400, 'triangle', 0.08);
             const guideSec = document.getElementById('guide-section');
             const termTab = document.getElementById('terminal-tab');
+            const guideBtn = document.getElementById('tab-btn-guide');
+            const termBtn = document.getElementById('tab-btn-terminal');
 
+            let target;
             if (tab === 'terminal') {
                 guideSec.classList.add('hidden');
                 termTab.classList.remove('hidden');
+                termBtn.classList.add('tab-active');
+                guideBtn.classList.remove('tab-active');
+                target = termTab;
             } else {
                 guideSec.classList.remove('hidden');
                 termTab.classList.add('hidden');
+                guideBtn.classList.add('tab-active');
+                termBtn.classList.remove('tab-active');
+                target = guideSec;
             }
+
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function openGuideModal(title, text) {
