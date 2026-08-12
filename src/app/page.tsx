@@ -87,60 +87,7 @@ export default function Home() {
             <div className="absolute top-4 right-16 sm:right-20 w-24 h-6 tape-yellow z-20"></div>
             <div className="absolute bottom-8 left-12 sm:left-16 w-28 h-6 tape-sage z-20"></div>
 
-            <div
-              className="absolute right-6 sm:right-12 top-10 sm:top-12 bg-mustard text-ink font-pixel text-[10px] px-3 py-1.5 border-2 border-ink shadow-retro-sm rotate-[12deg] z-20 flex flex-col items-center"
-              dir="ltr"
-            >
-              <span>TICKET</span>
-              <span className="text-xs font-bold">#VIBE01</span>
-            </div>
 
-            <div
-              className="absolute bottom-2 sm:bottom-6 right-4 sm:right-10 bg-dusty-blue text-cream p-2 sm:p-3 border-3 border-ink rounded-xl shadow-retro rotate-[6deg] z-10 hidden sm:block max-w-[180px]"
-              dir="ltr"
-            >
-              <div className="font-pixel text-[10px] text-mustard mb-1 flex justify-between">
-                <span>AI-KB</span>
-                <span>[PROMPT]</span>
-              </div>
-              <div className="grid grid-cols-6 gap-1">
-                <div className="w-4 h-4 bg-cream text-ink text-[8px] font-mono flex items-center justify-center rounded border border-ink">
-                  C
-                </div>
-                <div className="w-4 h-4 bg-cream text-ink text-[8px] font-mono flex items-center justify-center rounded border border-ink">
-                  U
-                </div>
-                <div className="w-4 h-4 bg-cream text-ink text-[8px] font-mono flex items-center justify-center rounded border border-ink">
-                  R
-                </div>
-                <div className="w-4 h-4 bg-coral text-cream text-[8px] font-mono flex items-center justify-center rounded border border-ink">
-                  S
-                </div>
-                <div className="w-4 h-4 bg-cream text-ink text-[8px] font-mono flex items-center justify-center rounded border border-ink">
-                  O
-                </div>
-                <div className="w-4 h-4 bg-cream text-ink text-[8px] font-mono flex items-center justify-center rounded border border-ink">
-                  R
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute top-4 sm:top-8 left-4 sm:left-10 translucent-shell p-3 rounded-2xl rotate-[-8deg] z-10 w-32 sm:w-40">
-              <div
-                className="font-pixel text-[9px] text-ink mb-1 text-center font-bold"
-                dir="ltr"
-              >
-                AI CORE / TEAL
-              </div>
-              <div className="crt-screen h-20 flex items-center justify-center">
-                <span
-                  className="font-pixel text-[9px] text-sage animate-pulse"
-                  dir="ltr"
-                >
-                  &gt; VIBE.EXE
-                </span>
-              </div>
-            </div>
 
             <Mascot />
 
