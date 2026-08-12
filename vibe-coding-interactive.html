@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coding | البرمجة التوليدية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F6F3E7',
+                        'cream-dark': '#EBE5D3',
+                        'dusty-blue': '#4D7C8A',
+                        'dusty-blue-dark': '#385F6B',
+                        'mustard': '#E09F3E',
+                        'mustard-light': '#F2B84B',
+                        'coral': '#E06D53',
+                        'coral-dark': '#C65239',
+                        'sage': '#7FA99B',
+                        'sage-light': '#A5C4B9',
+                        'ink': '#2B211B',
+                        'translucent-blue': 'rgba(77, 124, 138, 0.4)',
+                    },
+                    fontFamily: {
+                        heading: ['"Cairo"', 'sans-serif'],
+                        pixel: ['"Silkscreen"', 'monospace'],
+                        mono: ['"Space Mono"', 'monospace'],
+                        body: ['"IBM Plex Sans Arabic"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'retro': '4px 4px 0px #2B211B',
+                        'retro-lg': '8px 8px 0px #2B211B',
+                        'retro-sm': '2px 2px 0px #2B211B',
+                        'inner-crt': 'inset 0 0 15px rgba(0,0,0,0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F6F3E7;
+            color: #2B211B;
+            background-image:
+                radial-gradient(#2B211B 0.75px, transparent 0.75px),
+                radial-gradient(#2B211B 0.75px, #F6F3E7 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            background-blend-mode: opacity;
+            opacity: 0.98;
+        }
+
+        .paper-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.25;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .tape-pink { background-color: rgba(224, 109, 83, 0.75); box-shadow: 0 1px 3px rgba(0,0,0,0.1); transform: rotate(-2deg); }
+        .tape-yellow { background-color: rgba(224, 159, 62, 0.75); box-shadow: 0 1px 3px rgba(0,0,0,0.1); transform: rotate(3deg); }
+        .tape-sage { background-color: rgba(127, 169, 155, 0.75); box-shadow: 0 1px 3px rgba(0,0,0,0.1); transform: rotate(-1deg); }
+
+        .crt-screen {
+            background: #1a2628;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid #2B211B;
+            border-radius: 12px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 0 10px rgba(127, 169, 155, 0.3);
+        }
+        .crt-screen::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 20;
+            background-size: 100% 3px, 6px 100%;
+            pointer-events: none;
+        }
+
+        .translucent-shell {
+            background: rgba(77, 124, 138, 0.25);
+            backdrop-filter: blur(4px);
+            border: 3px solid #2B211B;
+            box-shadow: inset 2px 2px 10px rgba(255,255,255,0.4), inset -2px -2px 10px rgba(0,0,0,0.2), 6px 6px 0px #2B211B;
+        }
+
+        .wire-svg { stroke-dasharray: 1000; stroke-dashoffset: 0; animation: wirePulse 4s ease-in-out infinite alternate; }
+        @keyframes wirePulse { 0% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 40; } }
+
+        .retro-btn { transition: all 0.1s ease; }
+        .retro-btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0px #2B211B !important; }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #EBE5D3; border-left: 2px solid #2B211B; }
+        ::-webkit-scrollbar-thumb { background: #E06D53; border: 2px solid #2B211B; }
+
+        [dir="ltr"] { direction: ltr; unicode-bidi: isolate; }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden p-2 md:p-6 font-body">
+
+    <div class="paper-grain"></div>
+
+    <div class="max-w-7xl mx-auto bg-cream-dark border-4 border-ink rounded-2xl p-4 md:p-8 shadow-retro-lg relative my-2 md:my-6 overflow-hidden">
+
+        <div class="absolute top-3 left-4 flex items-center gap-2 z-10" dir="ltr">
+            <div class="bg-coral text-cream font-pixel text-xs px-3 py-1.5 border-2 border-ink shadow-retro-sm rotate-3 flex items-center gap-1">
+                <i class="fa-solid fa-stamp"></i> GDG · VIBE #01
+            </div>
+            <div class="hidden sm:flex bg-mustard text-ink font-pixel text-xs px-2 py-1 border-2 border-ink -rotate-2">
+                REF: 05/5
+            </div>
+        </div>
+
+        <header class="flex flex-col md:flex-row justify-between items-center pb-6 mb-6 border-b-4 border-dashed border-ink gap-4 relative">
+            <div class="absolute -top-6 right-12 w-28 h-6 tape-pink z-20"></div>
+
+            <div class="flex items-center gap-3">
+                <div class="bg-mustard border-3 border-ink p-2 rounded-lg shadow-retro text-ink font-pixel text-lg font-bold rotate-[-3deg]">
+                    <i class="fa-solid fa-microchip text-xl"></i>
+                </div>
+                <div>
+                    <span class="font-pixel text-xs tracking-widest text-dusty-blue uppercase block" dir="ltr">Vibe Coding Studio</span>
+                    <h1 class="font-heading text-2xl md:text-3xl text-ink tracking-wide leading-none">دليل البرمجة التوليدية</h1>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3 flex-wrap justify-center">
+                <button id="audio-toggle" onclick="toggleAudio()" class="retro-btn bg-sage text-ink font-mono font-bold text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro flex items-center gap-2 hover:bg-sage-light" dir="ltr">
+                    <i id="audio-icon" class="fa-solid fa-volume-xmark"></i> <span id="audio-status">SOUND: OFF</span>
+                </button>
+                <button onclick="switchTab('guide')" class="retro-btn bg-mustard text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-mustard-light" dir="ltr">
+                    <i class="fa-solid fa-book-open ml-1"></i> GUIDE
+                </button>
+                <button onclick="switchTab('terminal')" class="retro-btn bg-coral text-cream font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-coral-dark" dir="ltr">
+                    <i class="fa-solid fa-terminal ml-1"></i> ASK PIXEL
+                </button>
+            </div>
+        </header>
+
+        <main id="tab-hero" class="relative">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+
+                <div class="lg:col-span-5 flex flex-col gap-4 z-10">
+                    <div class="inline-self-start bg-sage text-ink font-pixel text-xs px-3 py-1 border-2 border-ink rounded shadow-retro-sm rotate-[-1deg] w-fit" dir="ltr">
+                        <i class="fa-solid fa-gear mr-1"></i> SYSTEM STATUS: ONLINE
+                    </div>
+
+                    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl text-ink leading-tight">
+                        تكلّمي... وخلّي <span class="bg-mustard px-2 border-2 border-ink inline-block rotate-1 shadow-retro-sm">الكود</span> يصير وحده
+                    </h2>
+
+                    <p class="font-body text-base md:text-lg text-ink font-semibold leading-relaxed bg-cream p-4 border-2 border-ink rounded-xl shadow-retro">
+                        مسار Vibe Coding يعلّمك تبنين تطبيقات حقيقية بالوصف الطبيعي، بمساعدة روبوتنا الصغير "بكسل" خطوة بخطوة.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 mt-2">
+                        <button onclick="triggerSyncSequence()" class="retro-btn bg-coral text-cream font-pixel text-sm px-5 py-3 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-coral-dark" dir="ltr">
+                            <i class="fa-solid fa-arrows-rotate text-lg"></i> ESC / ENTR / SYNC
+                        </button>
+                        <button onclick="openMascotDialog()" class="retro-btn bg-dusty-blue text-cream font-pixel text-sm px-4 py-3 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-dusty-blue-dark" dir="ltr">
+                            <i class="fa-solid fa-comments"></i> TALK TO PIXEL
+                        </button>
+                    </div>
+
+                    <div class="bg-ink text-sage font-mono text-xs p-3 rounded-lg border-2 border-ink shadow-retro-sm flex flex-col gap-1" dir="ltr">
+                        <div class="flex justify-between border-b border-sage/30 pb-1">
+                            <span>TERMINAL COMMAND</span>
+                            <span class="text-mustard">> READY</span>
+                        </div>
+                        <div class="text-cream font-pixel text-[10px]">
+                            > PROMPT + RUN // MODE: VIBE // TOOL: CURSOR
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 relative flex justify-center items-center py-6 min-h-[420px]">
+
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 600 400" fill="none">
+                        <path class="wire-svg" d="M 80,100 C 120,20 200,220 260,150 C 320,80 380,280 480,120" stroke="#E06D53" stroke-width="5" stroke-linecap="round"/>
+                        <path class="wire-svg" d="M 50,300 C 150,380 220,100 340,320 C 420,400 520,250 560,300" stroke="#E09F3E" stroke-width="4" stroke-linecap="round"/>
+                        <path class="wire-svg" d="M 200,50 C 250,180 100,280 300,380" stroke="#4D7C8A" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+
+                    <div class="absolute w-[85%] h-[90%] bg-cream border-3 border-ink rounded-2xl shadow-retro rotate-2 z-0"></div>
+                    <div class="absolute w-[80%] h-[85%] bg-sage-light/40 border-2 border-dashed border-ink rounded-xl -rotate-2 z-0"></div>
+
+                    <div class="absolute top-2 right-10 w-24 h-6 tape-yellow z-20"></div>
+                    <div class="absolute bottom-4 left-12 w-28 h-6 tape-sage z-20"></div>
+
+                    <div class="absolute right-2 top-8 bg-mustard text-ink font-pixel text-[10px] px-3 py-1.5 border-2 border-ink shadow-retro-sm rotate-[12deg] z-20 flex flex-col items-center" dir="ltr">
+                        <span>TICKET</span>
+                        <span class="text-xs font-bold">#VIBE01</span>
+                    </div>
+
+                    <div class="absolute -bottom-2 right-0 sm:right-4 bg-dusty-blue text-cream p-2 sm:p-3 border-3 border-ink rounded-xl shadow-retro rotate-[6deg] z-10 hidden sm:block max-w-[180px]" dir="ltr">
+                        <div class="font-pixel text-[10px] text-mustard mb-1 flex justify-between">
+                            <span>AI-KB</span>
+                            <span>[PROMPT]</span>
+                        </div>
+                        <div class="grid grid-cols-6 gap-1">
+                            <div class="w-4 h-4 bg-cream text-ink text-[8px] font-mono flex items-center justify-center rounded border border-ink">C</div>
+                            <div class="w-4 h-4 bg-cream text-ink text-[8px] font-mono flex items-center justify-center rounded border border-ink">U</div>
+                            <div class="w-4 h-4 bg-cream text-ink text-[8px] font-mono flex items-center justify-center rounded border border-ink">R</div>
+                            <div class="w-4 h-4 bg-coral text-cream text-[8px] font-mono flex items-center justify-center rounded border border-ink">S</div>
+                            <div class="w-4 h-4 bg-cream text-ink text-[8px] font-mono flex items-center justify-center rounded border border-ink">O</div>
+                            <div class="w-4 h-4 bg-cream text-ink text-[8px] font-mono flex items-center justify-center rounded border border-ink">R</div>
+                        </div>
+                    </div>
+
+                    <div class="absolute top-0 left-2 sm:left-6 translucent-shell p-3 rounded-2xl rotate-[-8deg] z-10 w-32 sm:w-40">
+                        <div class="font-pixel text-[9px] text-ink mb-1 text-center font-bold" dir="ltr">AI CORE / TEAL</div>
+                        <div class="crt-screen h-20 flex items-center justify-center">
+                            <span id="crt-mini-text" class="font-pixel text-[9px] text-sage animate-pulse" dir="ltr">> VIBE.EXE</span>
+                        </div>
+                    </div>
+
+                    <div id="mascot-container" class="relative z-10 flex flex-col items-center cursor-pointer group" onclick="mascotExpressiveClick()">
+
+                        <div id="mascot-speech" class="absolute -top-16 bg-cream text-ink font-pixel text-xs p-3 rounded-xl border-3 border-ink shadow-retro z-30 transition-all duration-300 transform scale-100 max-w-[220px] text-center" dir="ltr">
+                            "BEEP BOOP! Click me to change my mood!"
+                            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-cream border-r-3 border-b-3 border-ink rotate-45"></div>
+                        </div>
+
+                        <div class="w-2 h-8 bg-ink rounded-t relative flex justify-center">
+                            <div id="antenna-light" class="absolute -top-3 w-4 h-4 bg-coral rounded-full border-2 border-ink animate-bounce shadow-md"></div>
+                        </div>
+
+                        <div class="w-48 sm:w-56 h-40 sm:h-44 bg-dusty-blue border-4 border-ink rounded-3xl p-3 shadow-retro relative flex flex-col items-center justify-center">
+                            <div class="absolute -right-3 top-6 w-3 h-12 bg-mustard border-2 border-ink rounded-r"></div>
+                            <div class="absolute -left-3 top-6 w-3 h-12 bg-coral border-2 border-ink rounded-l"></div>
+
+                            <div class="crt-screen w-full h-full flex flex-col items-center justify-center p-2 relative">
+                                <svg id="mascot-face" class="w-32 h-20" viewBox="0 0 100 60">
+                                    <ellipse id="eye-left" cx="30" cy="25" rx="8" ry="12" fill="#7FA99B" stroke="#2B211B" stroke-width="2"/>
+                                    <circle id="pupil-left" cx="30" cy="23" r="3" fill="#2B211B"/>
+                                    <circle cx="28" cy="20" r="1.5" fill="#FFFFFF"/>
+
+                                    <ellipse id="eye-right" cx="70" cy="25" rx="8" ry="12" fill="#7FA99B" stroke="#2B211B" stroke-width="2"/>
+                                    <circle id="pupil-right" cx="70" cy="23" r="3" fill="#2B211B"/>
+                                    <circle cx="68" cy="20" r="1.5" fill="#FFFFFF"/>
+
+                                    <path id="mascot-mouth" d="M 40 42 Q 50 48 60 42" stroke="#7FA99B" stroke-width="3" stroke-linecap="round" fill="none"/>
+                                </svg>
+                                <div class="absolute bottom-1 left-2 font-pixel text-[8px] text-sage/70" dir="ltr">PXL-01</div>
+                            </div>
+                        </div>
+
+                        <div class="w-20 h-3 bg-mustard border-2 border-ink rounded-full -my-1 z-10 shadow-sm"></div>
+
+                        <div class="w-44 sm:w-52 h-36 sm:h-40 bg-mustard border-4 border-ink rounded-2xl p-3 shadow-retro relative flex flex-col justify-between">
+
+                            <div class="flex justify-between items-center bg-cream-dark p-2 border-2 border-ink rounded-lg">
+                                <div class="w-10 h-10 bg-cream rounded-full border-2 border-ink relative flex items-center justify-center overflow-hidden">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div id="gauge-needle" class="w-0.5 h-4 bg-coral origin-bottom transition-transform duration-500 rotate-[-30deg]"></div>
+                                    </div>
+                                    <span class="font-pixel text-[6px] text-ink mt-3" dir="ltr">PWR</span>
+                                </div>
+
+                                <div class="flex gap-2">
+                                    <button onclick="rotateKnob('knob1', event)" class="w-7 h-7 bg-coral rounded-full border-2 border-ink shadow-retro-sm flex items-center justify-center">
+                                        <div id="knob1" class="w-1 h-3 bg-cream rounded-full transition-transform duration-200"></div>
+                                    </button>
+                                    <button onclick="rotateKnob('knob2', event)" class="w-7 h-7 bg-sage rounded-full border-2 border-ink shadow-retro-sm flex items-center justify-center">
+                                        <div id="knob2" class="w-1 h-3 bg-ink rounded-full transition-transform duration-200"></div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-around items-center bg-dusty-blue/30 p-2 border-2 border-ink rounded-lg" dir="ltr">
+                                <div class="flex flex-col items-center">
+                                    <span class="font-pixel text-[7px]">SYNC</span>
+                                    <div class="w-4 h-6 bg-cream border border-ink rounded flex items-center justify-center cursor-pointer" onclick="toggleSwitch(this)">
+                                        <div class="w-3 h-2 bg-coral rounded"></div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <span class="font-pixel text-[7px]">LINE</span>
+                                    <div class="w-4 h-6 bg-cream border border-ink rounded flex items-center justify-center cursor-pointer" onclick="toggleSwitch(this)">
+                                        <div class="w-3 h-2 bg-sage rounded transform translate-y-1"></div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <span class="font-pixel text-[7px]">DATA</span>
+                                    <div class="w-4 h-6 bg-cream border border-ink rounded flex items-center justify-center cursor-pointer" onclick="toggleSwitch(this)">
+                                        <div class="w-3 h-2 bg-mustard rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="absolute -bottom-5 left-4 right-4 flex justify-between px-2">
+                                <div class="w-12 h-6 bg-ink rounded-lg border-2 border-cream flex items-center justify-center gap-1">
+                                    <div class="w-1.5 h-1.5 bg-sage rounded-full"></div>
+                                    <div class="w-1.5 h-1.5 bg-sage rounded-full"></div>
+                                </div>
+                                <div class="w-12 h-6 bg-ink rounded-lg border-2 border-cream flex items-center justify-center gap-1">
+                                    <div class="w-1.5 h-1.5 bg-sage rounded-full"></div>
+                                    <div class="w-1.5 h-1.5 bg-sage rounded-full"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-2 left-4 sm:left-10 bg-sage text-ink p-2 rounded-2xl border-2 border-ink shadow-retro -rotate-6 z-20 flex items-center gap-1.5 animate-bounce" dir="ltr">
+                        <svg class="w-6 h-6" viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="16" fill="#A5C4B9" stroke="#2B211B" stroke-width="2"/>
+                            <circle cx="14" cy="18" r="2" fill="#2B211B"/>
+                            <circle cx="26" cy="18" r="2" fill="#2B211B"/>
+                            <path d="M 16 25 Q 20 28 24 25" stroke="#2B211B" stroke-width="2" fill="none"/>
+                        </svg>
+                        <span class="font-pixel text-[9px]">HELPER BLOB</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+
+        <section id="guide-section" class="mt-12 pt-8 border-t-4 border-ink">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-2">
+                <div>
+                    <span class="font-pixel text-xs text-coral tracking-widest uppercase" dir="ltr">CATALOG & MODULES</span>
+                    <h3 class="font-heading text-3xl text-ink">مسار Vibe Coding</h3>
+                </div>
+                <div class="font-mono text-xs bg-cream p-2 border-2 border-ink rounded-lg shadow-retro-sm" dir="ltr">
+                    SHOWING 4 CORE MODULES
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <div class="bg-cream border-3 border-ink rounded-xl p-4 shadow-retro relative flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                    <div class="absolute -top-3 right-4 w-16 h-5 tape-pink z-10"></div>
+                    <div>
+                        <div class="bg-dusty-blue/20 p-3 rounded-lg border-2 border-ink mb-3 text-center">
+                            <i class="fa-solid fa-comment-dots text-4xl text-dusty-blue"></i>
+                        </div>
+                        <div class="font-pixel text-[10px] text-coral mb-1" dir="ltr">MODULE #01</div>
+                        <h4 class="font-heading text-xl text-ink mb-1">فن البرومبت</h4>
+                        <p class="font-body text-xs text-ink/80 mb-3">كيف تصيغين طلب واضح ومحدد يعطيك كود قريب من اللي تبينه من أول مرة.</p>
+                    </div>
+                    <button onclick="openGuideModal('فن البرومبت', 'برومبت جيد يحتوي على الهدف الواضح، السياق التقني، والقيود المطلوبة. جربي تكتبين طلبك بثلاث خطوات: شنو تبين، بأي تقنية، وأي شكل نهائي.')" class="retro-btn bg-mustard text-ink font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
+                        VIEW SCHEMATIC
+                    </button>
+                </div>
+
+                <div class="bg-cream border-3 border-ink rounded-xl p-4 shadow-retro relative flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                    <div class="absolute -top-3 right-4 w-16 h-5 tape-sage z-10"></div>
+                    <div>
+                        <div class="bg-sage/20 p-3 rounded-lg border-2 border-ink mb-3 text-center">
+                            <i class="fa-solid fa-toolbox text-4xl text-sage"></i>
+                        </div>
+                        <div class="font-pixel text-[10px] text-coral mb-1" dir="ltr">MODULE #02</div>
+                        <h4 class="font-heading text-xl text-ink mb-1">أدوات التوليد</h4>
+                        <p class="font-body text-xs text-ink/80 mb-3">الفرق بين Cursor, Replit, و v0 ومتى تستخدمين كل أداة حسب مرحلة مشروعك.</p>
+                    </div>
+                    <button onclick="openGuideModal('أدوات التوليد', 'Cursor مناسب للتعديل داخل مشروع موجود. Replit بيئة تطوير كاملة بالمتصفح. v0/Figma AI لتوليد واجهات من وصف أو تصميم جاهز.')" class="retro-btn bg-sage text-ink font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
+                        VIEW SCHEMATIC
+                    </button>
+                </div>
+
+                <div class="bg-cream border-3 border-ink rounded-xl p-4 shadow-retro relative flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                    <div class="absolute -top-3 right-4 w-16 h-5 tape-yellow z-10"></div>
+                    <div>
+                        <div class="bg-coral/20 p-3 rounded-lg border-2 border-ink mb-3 text-center">
+                            <i class="fa-solid fa-code text-4xl text-coral"></i>
+                        </div>
+                        <div class="font-pixel text-[10px] text-coral mb-1" dir="ltr">MODULE #03</div>
+                        <h4 class="font-heading text-xl text-ink mb-1">بناء المشروع</h4>
+                        <p class="font-body text-xs text-ink/80 mb-3">من فكرة بجملة وحدة إلى مشروع متكامل، ببرومبتات متتابعة ومنظمة.</p>
+                    </div>
+                    <button onclick="openGuideModal('بناء المشروع', 'ابدئي بهيكل عام للصفحات، ثم حسّني كل قسم ببرومبت منفصل. احفظي نسخة تشتغل قبل أي تعديل كبير حتى ترجعين لها لو تعقّد الوضع.')" class="retro-btn bg-coral text-cream font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
+                        VIEW SCHEMATIC
+                    </button>
+                </div>
+
+                <div class="bg-cream border-3 border-ink rounded-xl p-4 shadow-retro relative flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                    <div class="absolute -top-3 right-4 w-16 h-5 tape-pink z-10"></div>
+                    <div>
+                        <div class="bg-mustard/20 p-3 rounded-lg border-2 border-ink mb-3 text-center">
+                            <i class="fa-solid fa-rocket text-4xl text-mustard"></i>
+                        </div>
+                        <div class="font-pixel text-[10px] text-coral mb-1" dir="ltr">MODULE #04</div>
+                        <h4 class="font-heading text-xl text-ink mb-1">التصحيح والنشر</h4>
+                        <p class="font-body text-xs text-ink/80 mb-3">قراءة الكود المولّد نقديًا، تصحيح الأخطاء، وخطوات نشر بسيطة على Vercel أو Netlify.</p>
+                    </div>
+                    <button onclick="openGuideModal('التصحيح والنشر', 'لا تنشرين كود ما فهمتيه. اختبري كل ميزة قبل النشر، واسألي الأداة تشرح لك أي جزء غامض بالكود قبل الإطلاق النهائي.')" class="retro-btn bg-mustard text-ink font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
+                        VIEW SCHEMATIC
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="terminal-tab" class="mt-12 pt-8 border-t-4 border-ink hidden">
+            <div class="bg-ink text-sage p-6 rounded-2xl border-4 border-ink shadow-retro-lg relative" dir="ltr">
+
+                <div class="flex justify-between items-center pb-4 border-b-2 border-sage/30 mb-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 bg-coral rounded-full border border-ink"></div>
+                        <div class="w-3 h-3 bg-mustard rounded-full border border-ink"></div>
+                        <div class="w-3 h-3 bg-sage rounded-full border border-ink"></div>
+                        <span class="font-pixel text-xs text-cream ml-2">PIXEL_ASSISTANT_V1.EXE</span>
+                    </div>
+                    <span class="font-mono text-xs text-mustard hidden sm:inline">[OFFLINE TIPS ENGINE]</span>
+                </div>
+
+                <div id="terminal-logs" class="font-mono text-xs sm:text-sm h-64 overflow-y-auto space-y-3 p-2 border border-sage/20 rounded bg-black/40">
+                    <div class="text-sage">
+                        [SYSTEM]: PIXEL ASSISTANT READY.<br>
+                        [SYSTEM]: Ask about prompting, Cursor, Replit, debugging, or deploying your Vibe Coding project!
+                    </div>
+                </div>
+
+                <form onsubmit="handleTerminalSubmit(event)" class="mt-4 flex gap-2">
+                    <span class="font-mono text-mustard text-sm flex items-center">&gt;</span>
+                    <input id="terminal-input" type="text" placeholder="Type your question (e.g. 'how do I write a good prompt?')..." class="flex-1 bg-black/60 border-2 border-sage/50 rounded px-3 py-2 font-mono text-xs sm:text-sm text-cream focus:outline-none focus:border-mustard">
+                    <button type="submit" class="retro-btn bg-mustard text-ink font-pixel text-xs px-4 py-2 border-2 border-ink rounded shadow-retro-sm">
+                        TRANSMIT
+                    </button>
+                </form>
+
+            </div>
+        </section>
+
+        <footer class="mt-12 pt-6 border-t-2 border-dashed border-ink flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-ink" dir="ltr">
+            <div class="flex items-center gap-2">
+                <span class="bg-mustard text-ink font-pixel text-[10px] px-2 py-0.5 border border-ink">VER: 1.0</span>
+                <span>VIBE CODING · GDG ON CAMPUS</span>
+            </div>
+            <div class="flex gap-4 font-pixel text-[10px]">
+                <a href="#" onclick="triggerSyncSequence(); return false;" class="text-coral hover:underline">SYNC STATE</a>
+                <span>•</span>
+                <a href="#" onclick="mascotExpressiveClick(); return false;" class="text-dusty-blue hover:underline">MASCOT MOOD</a>
+                <span>•</span>
+                <span class="text-sage font-bold">MASCOT: PIXEL</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="guide-modal" class="fixed inset-0 bg-ink/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-cream border-4 border-ink rounded-2xl p-6 max-w-md w-full shadow-retro-lg relative">
+            <div class="absolute -top-4 -left-4 bg-coral text-cream rounded-full w-8 h-8 border-2 border-ink flex items-center justify-center font-pixel font-bold cursor-pointer" onclick="closeGuideModal()">
+                X
+            </div>
+            <div class="font-pixel text-xs text-dusty-blue mb-1" dir="ltr">MODULE DETAILS</div>
+            <h3 id="modal-title" class="font-heading text-2xl text-ink mb-3">عنوان الوحدة</h3>
+            <p id="modal-body" class="font-body text-sm text-ink/90 mb-6 bg-cream-dark p-3 border-2 border-ink rounded-lg">تفاصيل الوحدة...</p>
+            <button onclick="closeGuideModal()" class="retro-btn bg-mustard text-ink font-pixel text-xs py-2 px-4 border-2 border-ink rounded-lg shadow-retro w-full" dir="ltr">
+                CLOSE
+            </button>
+        </div>
+    </div>
+
+    <script>
+        /* --- AUDIO SYNTHESIZER (Web Audio API) --- */
+        let audioCtx = null;
+        let soundEnabled = false;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playBeep(freq = 440, type = 'sine', duration = 0.1) {
+            if (!soundEnabled || !audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function toggleAudio() {
+            soundEnabled = !soundEnabled;
+            if (soundEnabled) {
+                initAudio();
+                document.getElementById('audio-icon').className = "fa-solid fa-volume-high text-coral";
+                document.getElementById('audio-status').innerText = "SOUND: ON";
+                playBeep(600, 'triangle', 0.15);
+            } else {
+                document.getElementById('audio-icon').className = "fa-solid fa-volume-xmark";
+                document.getElementById('audio-status').innerText = "SOUND: OFF";
+            }
+        }
+
+        const eyes = {
+            leftPupil: document.getElementById('pupil-left'),
+            rightPupil: document.getElementById('pupil-right'),
+            mouth: document.getElementById('mascot-mouth')
+        };
+
+        let mascotMoods = [
+            { mouth: "M 40 42 Q 50 48 60 42", text: "BEEP BOOP! Systems normal!", color: "#7FA99B" },
+            { mouth: "M 40 45 Q 50 38 60 45", text: "OH! Did you just write a prompt?", color: "#E09F3E" },
+            { mouth: "M 40 42 L 60 42", text: "SCANNING... code looks clean.", color: "#4D7C8A" },
+            { mouth: "M 38 48 Q 50 38 62 48", text: "SYNCING YOUR VIBE PROJECT!", color: "#E06D53" }
+        ];
+        let currentMoodIdx = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            if (!eyes.leftPupil || !eyes.rightPupil) return;
+            const mascot = document.getElementById('mascot-container');
+            if (!mascot) return;
+
+            const rect = mascot.getBoundingClientRect();
+            const mascotCenterX = rect.left + rect.width / 2;
+            const mascotCenterY = rect.top + rect.height / 3;
+
+            const angle = Math.atan2(e.clientY - mascotCenterY, e.clientX - mascotCenterX);
+            const distance = Math.min(3, Math.hypot(e.clientX - mascotCenterX, e.clientY - mascotCenterY) / 50);
+
+            const pupilX = Math.cos(angle) * distance;
+            const pupilY = Math.sin(angle) * distance;
+
+            eyes.leftPupil.setAttribute('cx', 30 + pupilX);
+            eyes.leftPupil.setAttribute('cy', 23 + pupilY);
+            eyes.rightPupil.setAttribute('cx', 70 + pupilX);
+            eyes.rightPupil.setAttribute('cy', 23 + pupilY);
+        });
+
+        function mascotExpressiveClick() {
+            playBeep(880, 'square', 0.12);
+            currentMoodIdx = (currentMoodIdx + 1) % mascotMoods.length;
+            const mood = mascotMoods[currentMoodIdx];
+
+            eyes.mouth.setAttribute('d', mood.mouth);
+            document.getElementById('mascot-speech').innerText = mood.text;
+            document.getElementById('antenna-light').style.backgroundColor = mood.color;
+
+            const needle = document.getElementById('gauge-needle');
+            if (needle) {
+                const randomRotate = Math.floor(Math.random() * 120) - 60;
+                needle.style.transform = `rotate(${randomRotate}deg)`;
+            }
+        }
+
+        function openMascotDialog() {
+            mascotExpressiveClick();
+            document.getElementById('mascot-speech').innerText = "LET'S TALK! Switch to the ASK PIXEL tab above!";
+        }
+
+        function rotateKnob(knobId, event) {
+            event.stopPropagation();
+            playBeep(350, 'sawtooth', 0.08);
+            const knob = document.getElementById(knobId);
+            const currentRotation = knob.dataset.rotation ? parseInt(knob.dataset.rotation) : 0;
+            const newRotation = currentRotation + 45;
+            knob.dataset.rotation = newRotation;
+            knob.style.transform = `rotate(${newRotation}deg)`;
+        }
+
+        function toggleSwitch(element) {
+            playBeep(220, 'sine', 0.05);
+            const inner = element.firstElementChild;
+            if (inner) {
+                inner.classList.toggle('translate-y-1');
+            }
+        }
+
+        function triggerSyncSequence() {
+            playBeep(523, 'square', 0.1);
+            setTimeout(() => playBeep(659, 'square', 0.1), 100);
+            setTimeout(() => playBeep(783, 'square', 0.2), 200);
+
+            const speech = document.getElementById('mascot-speech');
+            speech.innerText = ">> SYNCING VIBE PROJECT... 100% COMPLETE!";
+
+            const miniCRT = document.getElementById('crt-mini-text');
+            if (miniCRT) {
+                miniCRT.innerText = "> SYNC OK";
+                setTimeout(() => miniCRT.innerText = "> VIBE.EXE", 2500);
+            }
+        }
+
+        /* --- TAB NAVIGATION & MODALS --- */
+        function switchTab(tab) {
+            playBeep(400, 'triangle', 0.08);
+            const guideSec = document.getElementById('guide-section');
+            const termTab = document.getElementById('terminal-tab');
+
+            if (tab === 'terminal') {
+                guideSec.classList.add('hidden');
+                termTab.classList.remove('hidden');
+            } else {
+                guideSec.classList.remove('hidden');
+                termTab.classList.add('hidden');
+            }
+        }
+
+        function openGuideModal(title, text) {
+            playBeep(600, 'sine', 0.1);
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-body').innerText = text;
+            document.getElementById('guide-modal').classList.remove('hidden');
+        }
+
+        function closeGuideModal() {
+            playBeep(300, 'sine', 0.08);
+            document.getElementById('guide-modal').classList.add('hidden');
+        }
+
+        /* --- PIXEL ASSISTANT: local rule-based responder (works fully offline, no API key needed) --- */
+        const knowledgeBase = [
+            { keys: ['prompt','برومبت'], reply: "A good prompt has 3 parts: the GOAL (what you want), the CONTEXT (tech/library), and the CONSTRAINTS (style, behavior). Be specific — 'a product card with image, price, and buy button' beats just 'a card'." },
+            { keys: ['cursor'], reply: "Cursor is best for editing code inside an existing project. Select the file or function, describe the change, and review the diff before accepting." },
+            { keys: ['replit'], reply: "Replit gives you a full dev environment in the browser — great for building and running a whole small app from a single description." },
+            { keys: ['v0','figma'], reply: "v0 and Figma AI turn a description or design into a working UI fast. Use them for the first draft of a screen, then refine by hand or with Cursor." },
+            { keys: ['debug','error','bug','خطأ'], reply: "When something breaks: read the error message first, ask the AI to explain it in plain words, then ask for a fix ONE step at a time instead of a full rewrite." },
+            { keys: ['deploy','نشر','vercel','netlify'], reply: "To deploy: push your project to GitHub, connect the repo to Vercel or Netlify, and it builds automatically. Always test the live link before sharing it." },
+            { keys: ['hello','hi','مرحبا','هلا'], reply: "BEEP BOOP! Hi there. Ask me about prompting, Cursor, Replit, debugging, or deploying." }
+        ];
+
+        function getPixelReply(query){
+            const q = query.toLowerCase();
+            for (const item of knowledgeBase){
+                if (item.keys.some(k => q.includes(k))) return item.reply;
+            }
+            const fallbacks = [
+                "Try being more specific: what's the goal, what tool are you using, and what should the result look like?",
+                "I don't have a canned answer for that one yet — try asking about prompting, Cursor, Replit, debugging, or deploying!",
+                "Good question! Break it into a smaller step and describe exactly what you want the AI to build first."
+            ];
+            return fallbacks[Math.floor(Math.random()*fallbacks.length)];
+        }
+
+        function handleTerminalSubmit(e) {
+            e.preventDefault();
+            const inputEl = document.getElementById('terminal-input');
+            const query = inputEl.value.trim();
+            if (!query) return;
+
+            playBeep(700, 'square', 0.05);
+            const logs = document.getElementById('terminal-logs');
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'text-mustard';
+            userMsg.innerText = `> USER: ${query}`;
+            logs.appendChild(userMsg);
+            inputEl.value = '';
+            logs.scrollTop = logs.scrollHeight;
+
+            const loadingMsg = document.createElement('div');
+            loadingMsg.className = 'text-coral animate-pulse';
+            loadingMsg.innerText = '[PIXEL]: THINKING...';
+            logs.appendChild(loadingMsg);
+            logs.scrollTop = logs.scrollHeight;
+
+            setTimeout(() => {
+                loadingMsg.remove();
+                const reply = getPixelReply(query);
+                const responseMsg = document.createElement('div');
+                responseMsg.className = 'text-sage bg-black/30 p-2 rounded border border-sage/30';
+                responseMsg.innerText = `[PIXEL]: ${reply}`;
+                logs.appendChild(responseMsg);
+                playBeep(800, 'sine', 0.15);
+                logs.scrollTop = logs.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
