@@ -562,8 +562,10 @@
         }
 
         function openMascotDialog() {
-            mascotExpressiveClick();
-            document.getElementById('mascot-speech').innerText = "LET'S TALK! Switch to the ASK PIXEL tab above!";
+            playBeep(880, 'square', 0.12);
+            document.getElementById('mascot-speech').innerText = "LET'S TALK! Opening my chat...";
+            switchTab('terminal');
+            setTimeout(() => document.getElementById('terminal-input').focus(), 400);
         }
 
         function rotateKnob(knobId, event) {
