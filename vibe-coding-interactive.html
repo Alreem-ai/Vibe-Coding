@@ -143,10 +143,10 @@
                 <button id="audio-toggle" onclick="toggleAudio()" class="retro-btn bg-sage text-ink font-mono font-bold text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro flex items-center gap-2 hover:bg-sage-light" dir="ltr">
                     <i id="audio-icon" class="fa-solid fa-volume-xmark"></i> <span id="audio-status">SOUND: OFF</span>
                 </button>
-                <button id="tab-btn-guide" onclick="switchTab('guide')" class="retro-btn tab-active bg-mustard/80 text-ink font-pixel text-[10px] px-2.5 py-1.5 border border-ink rounded-lg shadow-retro-sm hover:bg-mustard-light" dir="ltr">
+                <button id="tab-btn-guide" onclick="switchTab('guide')" title="الدليل — عرض وحدات المسار" class="retro-btn tab-active bg-mustard/80 text-ink font-pixel text-[10px] px-2.5 py-1.5 border border-ink rounded-lg shadow-retro-sm hover:bg-mustard-light" dir="ltr">
                     <i class="fa-solid fa-book-open ml-1"></i> GUIDE
                 </button>
-                <button id="tab-btn-terminal" onclick="switchTab('terminal')" class="retro-btn bg-coral/80 text-cream font-pixel text-[10px] px-2.5 py-1.5 border border-ink rounded-lg shadow-retro-sm hover:bg-coral-dark" dir="ltr">
+                <button id="tab-btn-terminal" onclick="switchTab('terminal')" title="اسألي بكسل — الدردشة مع المساعد" class="retro-btn bg-coral/80 text-cream font-pixel text-[10px] px-2.5 py-1.5 border border-ink rounded-lg shadow-retro-sm hover:bg-coral-dark" dir="ltr">
                     <i class="fa-solid fa-terminal ml-1"></i> ASK PIXEL
                 </button>
             </div>
@@ -171,10 +171,10 @@
 
                     <div class="flex flex-wrap items-center gap-3 mt-2">
                         <button onclick="startExperience()" class="retro-btn bg-coral text-cream font-pixel text-base px-7 py-4 border-3 border-ink rounded-xl shadow-retro-lg flex items-center gap-2 hover:bg-coral-dark" dir="ltr">
-                            <i class="fa-solid fa-play text-lg"></i> START LEARNING
+                            <i class="fa-solid fa-play text-lg"></i> START LEARNING <span class="text-[10px] font-body opacity-80" dir="rtl">— ابدأ التعلم</span>
                         </button>
                         <button onclick="openMascotDialog()" class="retro-btn bg-cream text-dusty-blue font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-2 hover:bg-cream-dark" dir="ltr">
-                            <i class="fa-solid fa-comments"></i> TALK TO PIXEL
+                            <i class="fa-solid fa-comments"></i> TALK TO PIXEL <span class="text-[9px] font-body opacity-80" dir="rtl">— تكلمي مع بكسل</span>
                         </button>
                     </div>
 
@@ -357,7 +357,7 @@
                         <p class="font-body text-xs text-ink/80 mb-3">كيف تصيغين طلب واضح ومحدد يعطيك كود قريب من اللي تبينه من أول مرة.</p>
                     </div>
                     <button onclick="openGuideModal('فن البرومبت', 'برومبت جيد يحتوي على الهدف الواضح، السياق التقني، والقيود المطلوبة. جربي تكتبين طلبك بثلاث خطوات: شنو تبين، بأي تقنية، وأي شكل نهائي.')" class="retro-btn bg-mustard text-ink font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
-                        VIEW SCHEMATIC
+                        VIEW SCHEMATIC <span class="text-[9px] font-body opacity-80" dir="rtl">— عرض التفاصيل</span>
                     </button>
                 </div>
 
@@ -372,7 +372,7 @@
                         <p class="font-body text-xs text-ink/80 mb-3">الفرق بين Cursor, Replit, و v0 ومتى تستخدمين كل أداة حسب مرحلة مشروعك.</p>
                     </div>
                     <button onclick="openGuideModal('أدوات التوليد', 'Cursor مناسب للتعديل داخل مشروع موجود. Replit بيئة تطوير كاملة بالمتصفح. v0/Figma AI لتوليد واجهات من وصف أو تصميم جاهز.')" class="retro-btn bg-sage text-ink font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
-                        VIEW SCHEMATIC
+                        VIEW SCHEMATIC <span class="text-[9px] font-body opacity-80" dir="rtl">— عرض التفاصيل</span>
                     </button>
                 </div>
 
@@ -387,7 +387,7 @@
                         <p class="font-body text-xs text-ink/80 mb-3">من فكرة بجملة وحدة إلى مشروع متكامل، ببرومبتات متتابعة ومنظمة.</p>
                     </div>
                     <button onclick="openGuideModal('بناء المشروع', 'ابدئي بهيكل عام للصفحات، ثم حسّني كل قسم ببرومبت منفصل. احفظي نسخة تشتغل قبل أي تعديل كبير حتى ترجعين لها لو تعقّد الوضع.')" class="retro-btn bg-coral text-cream font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
-                        VIEW SCHEMATIC
+                        VIEW SCHEMATIC <span class="text-[9px] font-body opacity-80" dir="rtl">— عرض التفاصيل</span>
                     </button>
                 </div>
 
@@ -402,7 +402,7 @@
                         <p class="font-body text-xs text-ink/80 mb-3">قراءة الكود المولّد نقديًا، تصحيح الأخطاء، وخطوات نشر بسيطة على Vercel أو Netlify.</p>
                     </div>
                     <button onclick="openGuideModal('التصحيح والنشر', 'لا تنشرين كود ما فهمتيه. اختبري كل ميزة قبل النشر، واسألي الأداة تشرح لك أي جزء غامض بالكود قبل الإطلاق النهائي.')" class="retro-btn bg-mustard text-ink font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
-                        VIEW SCHEMATIC
+                        VIEW SCHEMATIC <span class="text-[9px] font-body opacity-80" dir="rtl">— عرض التفاصيل</span>
                     </button>
                 </div>
 
@@ -432,8 +432,9 @@
                 <form onsubmit="handleTerminalSubmit(event)" class="mt-4 flex gap-2">
                     <span class="font-mono text-mustard text-sm flex items-center">&gt;</span>
                     <input id="terminal-input" type="text" placeholder="Type your question (e.g. 'how do I write a good prompt?')..." class="flex-1 bg-black/60 border-2 border-sage/50 rounded px-3 py-2 font-mono text-xs sm:text-sm text-cream focus:outline-none focus:border-mustard">
-                    <button type="submit" class="retro-btn bg-mustard text-ink font-pixel text-xs px-4 py-2 border-2 border-ink rounded shadow-retro-sm">
-                        TRANSMIT
+                    <button type="submit" class="retro-btn bg-mustard text-ink font-pixel text-xs px-4 py-2 border-2 border-ink rounded shadow-retro-sm flex flex-col items-center leading-tight">
+                        <span dir="ltr">TRANSMIT</span>
+                        <span class="text-[8px] font-body opacity-80" dir="rtl">إرسال</span>
                     </button>
                 </form>
 
