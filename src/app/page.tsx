@@ -29,7 +29,7 @@ export default function Home() {
               {t.home.heroHeadingSuffix}
             </h2>
 
-            <p className="font-body text-base md:text-lg text-ink font-semibold leading-relaxed bg-cream p-4 border-2 border-ink rounded-xl shadow-retro">
+            <p className="font-body text-base md:text-lg text-ink font-semibold leading-relaxed bg-cream p-4 border-2 border-ink rounded-xl shadow-retro whitespace-pre-line">
               {t.home.heroParagraph}
             </p>
 

@@ -99,7 +99,7 @@ const ar: Translations = {
     heroHeadingHighlight: "الكود",
     heroHeadingSuffix: "يصير وحده",
     heroParagraph:
-      'مسار Vibe Coding يعلّمك تبنين تطبيقات حقيقية بالوصف الطبيعي، بمساعدة روبوتنا الصغير "بكسل" خطوة بخطوة. (توجيه وكلاء AI بدل الكتابة اليدوية).',
+      'أهلاً فيكم! برنامج البرمجة التوليدية برنامج تدريبي مكثف مدته 5 أيام، يعلّمكم تبنون تطبيقات حقيقية بالوصف الطبيعي بدل الكتابة اليدوية للكود.\n\nمن أساسيات الذكاء الاصطناعي التوليدي وهندسة الأوامر، مرورًا ببناء أنظمة وتطبيقات الويب وربط الذكاء الاصطناعي، وصولًا لاختبار المشاريع ونشرها فعليًا على الويب. روبوتنا الصغير "بكسل" بيرافقكم خطوة بخطوة.',
     heroCta: "ابدأ الآن",
     talkToPixel: "تكلمي مع بكسل",
     terminalCommand: "أمر الطرفية",
@@ -173,7 +173,7 @@ const en: Translations = {
     heroHeadingHighlight: "code",
     heroHeadingSuffix: "write itself.",
     heroParagraph:
-      'The Vibe Coding path teaches you to build real apps through natural language, guided step by step by our little robot "Pixel." (Directing AI agents, instead of writing code by hand.)',
+      'Welcome! The Generative Coding Program is an intensive 5-day training program that teaches you to build real applications through natural language, instead of hand-writing code.\n\nFrom the fundamentals of generative AI and prompt engineering, through building systems, web apps, and AI integrations, all the way to testing projects and actually deploying them to the web. Our little robot "Pixel" will guide you every step of the way.',
     heroCta: "ESC / ENTR / SYNC",
     talkToPixel: "TALK TO PIXEL",
     terminalCommand: "TERMINAL COMMAND",
