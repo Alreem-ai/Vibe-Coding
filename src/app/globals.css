@@ -95,6 +95,7 @@ body {
 
 .retro-btn { transition: all 0.1s ease; }
 .retro-btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0px var(--color-ink) !important; }
+.tab-active { outline: 3px solid var(--color-ink); outline-offset: 2px; transform: translate(2px, 2px); box-shadow: 2px 2px 0px var(--color-ink) !important; }
 
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-cream-dark); border-left: 2px solid var(--color-ink); }

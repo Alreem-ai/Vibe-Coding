@@ -1,7 +1,14 @@
+"use client";
+
 import Link from "next/link";
-import { Cpu, VolumeX, BookOpen } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Cpu, VolumeX, BookOpen, Terminal } from "lucide-react";
 
 export default function Header() {
+  const pathname = usePathname();
+  const isGuideActive = pathname === "/" || pathname.startsWith("/day");
+  const isTerminalActive = pathname === "/terminal";
+
   return (
     <header className="flex flex-col md:flex-row justify-between items-center pb-6 mb-6 border-b-4 border-dashed border-ink gap-4 relative">
       <div className="flex items-center gap-3">
@@ -27,10 +34,23 @@ export default function Header() {
         </button>
         <Link
           href="/"
-          className="retro-btn bg-mustard text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-mustard-light flex items-center"
+          data-nav="guide"
+          className={`nav-btn retro-btn bg-mustard text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-mustard-light flex items-center ${
+            isGuideActive ? "tab-active" : ""
+          }`}
           dir="ltr"
         >
           <BookOpen size={16} className="mr-1" /> GUIDE
+        </Link>
+        <Link
+          href="/terminal"
+          data-nav="terminal"
+          className={`nav-btn retro-btn bg-coral text-cream font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-coral-dark flex items-center ${
+            isTerminalActive ? "tab-active" : ""
+          }`}
+          dir="ltr"
+        >
+          <Terminal size={16} className="mr-1" /> ASK PIXEL
         </Link>
       </div>
     </header>

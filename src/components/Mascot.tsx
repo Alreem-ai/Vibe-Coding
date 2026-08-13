@@ -71,6 +71,7 @@ export default function Mascot() {
 
   return (
     <div
+      id="mascot-container"
       ref={containerRef}
       className="relative z-10 flex flex-col items-center cursor-pointer group"
       onClick={handleMascotClick}
