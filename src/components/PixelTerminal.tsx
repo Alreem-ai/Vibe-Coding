@@ -77,7 +77,7 @@ export default function PixelTerminal() {
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const query = input.trim();
     if (!query) return;
@@ -86,11 +86,22 @@ export default function PixelTerminal() {
     setInput("");
     setThinking(true);
 
-    setTimeout(() => {
-      const reply = getPixelReply(query);
-      setThinking(false);
-      setLogs((prev) => [...prev, { id: logIdCounter++, role: "pixel", text: `[PIXEL]: ${reply}` }]);
-    }, 500);
+    let reply: string;
+    try {
+      const res = await fetch("/api/pixel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: query }),
+      });
+      if (!res.ok) throw new Error("bad response");
+      const data = await res.json();
+      reply = data.reply as string;
+    } catch {
+      reply = getPixelReply(query);
+    }
+
+    setThinking(false);
+    setLogs((prev) => [...prev, { id: logIdCounter++, role: "pixel", text: `[PIXEL]: ${reply}` }]);
   };
 
   return (
@@ -102,7 +113,7 @@ export default function PixelTerminal() {
           <div className="w-3 h-3 bg-sage rounded-full border border-ink"></div>
           <span className="font-pixel text-xs text-cream ml-2">PIXEL_ASSISTANT_V1.EXE</span>
         </div>
-        <span className="font-mono text-xs text-mustard hidden sm:inline">[OFFLINE TIPS ENGINE]</span>
+        <span className="font-mono text-xs text-mustard hidden sm:inline">[GEMINI POWERED]</span>
       </div>
 
       <div className="font-mono text-xs sm:text-sm h-64 overflow-y-auto space-y-3 p-2 border border-sage/20 rounded bg-black/40">
