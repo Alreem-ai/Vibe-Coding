@@ -1,15 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLocale } from "@/context/LocaleContext";
 
-const mascotMoods = [
-  { mouth: "M 40 42 Q 50 48 60 42", text: "BEEP BOOP! Systems normal!", color: "#7FA99B" },
-  { mouth: "M 40 45 Q 50 38 60 45", text: "OH! Did you just write a prompt?", color: "#E09F3E" },
-  { mouth: "M 40 42 L 60 42", text: "SCANNING... code looks clean.", color: "#4D7C8A" },
-  { mouth: "M 38 48 Q 50 38 62 48", text: "SYNCING YOUR VIBE PROJECT!", color: "#E06D53" },
+const moodShapes = [
+  { mouth: "M 40 42 Q 50 48 60 42", color: "#7FA99B" },
+  { mouth: "M 40 45 Q 50 38 60 45", color: "#E09F3E" },
+  { mouth: "M 40 42 L 60 42", color: "#4D7C8A" },
+  { mouth: "M 38 48 Q 50 38 62 48", color: "#E06D53" },
 ];
 
 export default function Mascot() {
+  const { t } = useLocale();
   const containerRef = useRef<HTMLDivElement>(null);
   const leftPupilRef = useRef<SVGCircleElement>(null);
   const rightPupilRef = useRef<SVGCircleElement>(null);
@@ -45,7 +47,7 @@ export default function Mascot() {
   }, []);
 
   const handleMascotClick = () => {
-    setMoodIdx((prev) => (prev + 1) % mascotMoods.length);
+    setMoodIdx((prev) => (prev + 1) % moodShapes.length);
     if (needleRef.current) {
       const randomRotate = Math.floor(Math.random() * 120) - 60;
       needleRef.current.style.transform = `rotate(${randomRotate}deg)`;
@@ -67,7 +69,7 @@ export default function Mascot() {
     });
   };
 
-  const mood = mascotMoods[moodIdx];
+  const mood = { ...moodShapes[moodIdx], text: t.mascot.moods[moodIdx] };
 
   return (
     <div
@@ -76,11 +78,8 @@ export default function Mascot() {
       className="relative z-10 flex flex-col items-center cursor-pointer group"
       onClick={handleMascotClick}
     >
-      <div
-        className="absolute -top-16 bg-cream text-ink font-pixel text-xs p-3 rounded-xl border-3 border-ink shadow-retro z-30 transition-all duration-300 transform scale-100 max-w-[220px] text-center"
-        dir="ltr"
-      >
-        "{mood.text}"
+      <div className="absolute -top-16 bg-cream text-ink font-pixel text-xs p-3 rounded-xl border-3 border-ink shadow-retro z-30 transition-all duration-300 transform scale-100 max-w-[220px] text-center">
+        &quot;{mood.text}&quot;
         <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-cream border-r-3 border-b-3 border-ink rotate-45"></div>
       </div>
 

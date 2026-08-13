@@ -3,6 +3,7 @@ import { Cairo, Silkscreen, Space_Mono, IBM_Plex_Sans_Arabic } from "next/font/g
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { LocaleProvider } from "@/context/LocaleContext";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -43,24 +44,26 @@ export default function RootLayout({
       <body
         className={`${cairo.variable} ${silkscreen.variable} ${spaceMono.variable} ${ibmPlex.variable} min-h-screen relative overflow-x-hidden font-body`}
       >
-        <div className="paper-grain"></div>
-        <div className="p-2 md:p-6">
-          <div className="max-w-7xl mx-auto bg-cream-dark border-4 border-ink rounded-2xl p-4 md:p-8 shadow-retro-lg relative my-2 md:my-6 overflow-hidden">
-            {/* Top Badges */}
-            <div className="absolute top-3 left-4 flex items-center gap-2 z-10" dir="ltr">
-              <div className="bg-coral text-cream font-pixel text-xs px-3 py-1.5 border-2 border-ink shadow-retro-sm rotate-3 flex items-center gap-1">
-                GDG · VIBE #01
+        <LocaleProvider>
+          <div className="paper-grain"></div>
+          <div className="p-2 md:p-6">
+            <div className="max-w-7xl mx-auto bg-cream-dark border-4 border-ink rounded-2xl p-4 md:p-8 shadow-retro-lg relative my-2 md:my-6 overflow-hidden">
+              {/* Top Badges */}
+              <div className="absolute top-3 left-4 flex items-center gap-2 z-10" dir="ltr">
+                <div className="bg-coral text-cream font-pixel text-xs px-3 py-1.5 border-2 border-ink shadow-retro-sm rotate-3 flex items-center gap-1">
+                  GDG · VIBE #01
+                </div>
+                <div className="hidden sm:flex bg-mustard text-ink font-pixel text-xs px-2 py-1 border-2 border-ink -rotate-2">
+                  REF: 05/5
+                </div>
               </div>
-              <div className="hidden sm:flex bg-mustard text-ink font-pixel text-xs px-2 py-1 border-2 border-ink -rotate-2">
-                REF: 05/5
-              </div>
-            </div>
 
-            <Header />
-            {children}
-            <Footer />
+              <Header />
+              {children}
+              <Footer />
+            </div>
           </div>
-        </div>
+        </LocaleProvider>
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale } from "@/context/LocaleContext";
 
 interface KnowledgeItem {
   keys: string[];
@@ -67,11 +68,12 @@ type LogEntry = {
 let logIdCounter = 0;
 
 export default function PixelTerminal() {
+  const { t } = useLocale();
   const [logs, setLogs] = useState<LogEntry[]>([
     {
       id: logIdCounter++,
       role: "system",
-      text: "[SYSTEM]: PIXEL ASSISTANT READY.\n[SYSTEM]: Ask about prompting, Cursor, Replit, debugging, or deploying your Vibe Coding project!",
+      text: t.pixelTerminal.systemReady,
     },
   ]);
   const [input, setInput] = useState("");
@@ -113,7 +115,7 @@ export default function PixelTerminal() {
           <div className="w-3 h-3 bg-sage rounded-full border border-ink"></div>
           <span className="font-pixel text-xs text-cream ml-2">PIXEL_ASSISTANT_V1.EXE</span>
         </div>
-        <span className="font-mono text-xs text-mustard hidden sm:inline">[GEMINI POWERED]</span>
+        <span className="font-mono text-xs text-mustard hidden sm:inline">{t.pixelTerminal.poweredBy}</span>
       </div>
 
       <div className="font-mono text-xs sm:text-sm h-64 overflow-y-auto space-y-3 p-2 border border-sage/20 rounded bg-black/40">
@@ -131,7 +133,7 @@ export default function PixelTerminal() {
             {log.text}
           </div>
         ))}
-        {thinking && <div className="text-coral animate-pulse">[PIXEL]: THINKING...</div>}
+        {thinking && <div className="text-coral animate-pulse">{t.pixelTerminal.thinking}</div>}
       </div>
 
       <form onSubmit={handleSubmit} className="mt-4 flex gap-2">
@@ -140,7 +142,7 @@ export default function PixelTerminal() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           type="text"
-          placeholder="Type your question (e.g. 'how do I write a good prompt?')..."
+          placeholder={t.pixelTerminal.placeholder}
           className="flex-1 bg-black/60 border-2 border-sage/50 rounded px-3 py-2 font-mono text-xs sm:text-sm text-cream focus:outline-none focus:border-mustard"
         />
         <button
