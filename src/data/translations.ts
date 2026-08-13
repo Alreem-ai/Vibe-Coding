@@ -143,7 +143,7 @@ const en: Translations = {
   langToggleLabel: "EN / عربي",
   header: {
     tagline: "Vibe Coding Studio",
-    title: "Generative Coding Guide",
+    title: "Vibe Coding Program",
     soundOff: "SOUND: OFF",
     guide: "GUIDE",
     askPixel: "ASK PIXEL",
