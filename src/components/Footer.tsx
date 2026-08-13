@@ -8,7 +8,7 @@ export default function Footer() {
         <span className="bg-mustard text-ink font-pixel text-[10px] px-2 py-0.5 border border-ink">
           VER: 1.0
         </span>
-        <span>VIBE CODING · GDG ON CAMPUS</span>
+        <span>TUWAIQ CLUB x GDG ON CAMPUS</span>
       </div>
       <div className="flex gap-4 font-pixel text-[10px]">
         <span className="text-coral">SYNC STATE</span>

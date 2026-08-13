@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, Home, Clock, PenTool } from "lucide-react";
+import { ArrowLeft, ArrowRight, Target, Clock } from "lucide-react";
 import { curriculumData } from "@/data/curriculum";
 
 export function generateStaticParams() {
@@ -20,141 +20,72 @@ export default async function DayPage({ params }: { params: Promise<{ id: string
 
   const prevDay = dayId > 1 ? dayId - 1 : null;
   const nextDay = dayId < curriculumData.length ? dayId + 1 : null;
-  const Icon = dayData.icon;
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 border-b-2 border-ink border-dashed pb-6">
-        <div>
-          <div className="flex items-center gap-3 mb-2">
-            <span
-              className="bg-coral text-cream font-pixel text-xs px-2 py-1 border-2 border-ink shadow-retro-sm rotate-[-2deg]"
-              dir="ltr"
-            >
-              DAY 0{dayData.id}
-            </span>
-            <span
-              className="font-pixel text-[10px] text-dusty-blue tracking-widest uppercase"
-              dir="ltr"
-            >
-              MODULE DETAILS
-            </span>
+      {/* File Folder / Document Header */}
+      <div className="flex flex-col lg:flex-row gap-6 items-start justify-between mb-10">
+        <div className="relative w-full">
+          <div className="absolute top-[-15px] right-4 w-24 h-6 tape-yellow z-10"></div>
+          <div className="bg-cream border-3 border-ink rounded-lg p-6 shadow-retro w-full relative z-0">
+             <div className="flex items-center gap-3 mb-3 border-b-2 border-ink/20 pb-2">
+                <span className="bg-ink text-cream font-pixel text-xs px-2 py-1 border-2 border-ink" dir="ltr">MODULE_0{dayData.id}</span>
+                <span className="font-pixel text-[10px] text-dusty-blue uppercase" dir="ltr">CONFIDENTIAL_DATA</span>
+             </div>
+             <h1 className="font-heading text-3xl md:text-4xl text-ink leading-tight">{dayData.title}</h1>
           </div>
-          <h2 className="font-heading text-3xl md:text-4xl text-ink">
-            {dayData.title}
-          </h2>
         </div>
-        <Link
-          href="/"
-          className="retro-btn bg-cream text-ink font-pixel text-xs px-4 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-2 hover:bg-cream-dark"
-          dir="ltr"
-        >
-          <Home size={16} /> BACK TO GUIDE
-        </Link>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-8">
-          <section>
-            <h3 className="font-heading text-2xl text-ink mb-4 flex items-center gap-2">
-              <Icon className="text-sage" size={24} /> الهدف
-            </h3>
-            <p className="font-body text-lg text-ink font-medium bg-cream p-5 border-3 border-ink rounded-xl shadow-retro">
+      <div className="space-y-8 max-w-4xl mx-auto">
+        {/* Objective Box */}
+        <section className="relative">
+          <div className="absolute -left-2 top-4 w-6 h-12 bg-coral border-2 border-ink rounded-l z-0"></div>
+          <div className="bg-sage-light/30 border-3 border-ink rounded-xl p-6 shadow-retro relative z-10 ml-2">
+            <h2 className="font-heading text-2xl text-ink mb-3 flex items-center gap-2">
+              <Target size={24} className="text-coral" /> الهدف الرئيسي
+            </h2>
+            <p className="font-body text-lg text-ink font-semibold leading-relaxed">
               {dayData.goal}
             </p>
-          </section>
-
-          <section>
-            <h3 className="font-heading text-2xl text-ink mb-4">
-              النقاط الرئيسية
-            </h3>
-            <ul className="space-y-4">
-              {dayData.points.map((point, index) => (
-                <li
-                  key={index}
-                  className="flex items-start gap-3 bg-cream-dark/50 p-4 border-2 border-ink rounded-lg shadow-retro-sm"
-                >
-                  <span className="flex-shrink-0 w-8 h-8 bg-mustard text-ink font-pixel text-xs flex items-center justify-center border-2 border-ink rounded-full mt-0.5">
-                    0{index + 1}
-                  </span>
-                  <span className="font-body text-base text-ink/90 leading-relaxed">
-                    {point}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          {dayData.schedule && dayData.schedule.length > 0 && (
-            <section>
-              <h3 className="font-heading text-2xl text-ink mb-4 flex items-center gap-2">
-                <Clock className="text-coral" size={24} /> الجدول الزمني
-              </h3>
-              <div className="space-y-4 relative before:absolute before:inset-0 before:ml-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-ink before:border-r before:border-dashed before:border-cream-dark">
-                {dayData.schedule.map((item, index) => (
-                  <div
-                    key={index}
-                    className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
-                  >
-                    <div className="flex items-center justify-center w-8 h-8 rounded-full border-2 border-ink bg-mustard text-ink shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-retro-sm z-10 font-pixel text-xs">
-                      {index + 1}
-                    </div>
-                    <div className="w-[calc(100%-3rem)] md:w-[calc(50%-2rem)] p-4 rounded-xl border-2 border-ink bg-cream shadow-retro-sm">
-                      <div className="font-pixel text-[10px] text-coral mb-1">
-                        {item.hour}
-                      </div>
-                      <h4 className="font-heading text-lg text-ink mb-2">
-                        {item.title}
-                      </h4>
-                      <p className="font-body text-sm text-ink/80">
-                        {item.details}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-        </div>
-
-        <div className="lg:col-span-1">
-          <div className="bg-dusty-blue/10 border-3 border-ink rounded-2xl p-6 shadow-retro sticky top-6">
-            <h3 className="font-heading text-xl text-ink mb-4 flex items-center gap-2 border-b-2 border-ink pb-3 border-dashed">
-              <PenTool className="text-dusty-blue" size={20} /> الأدوات المستخدمة
-            </h3>
-            <ul className="space-y-3">
-              {dayData.tools.map((tool, index) => (
-                <li
-                  key={index}
-                  className="bg-cream border-2 border-ink px-3 py-2 rounded-lg font-mono text-sm text-ink flex items-center gap-2 shadow-retro-sm"
-                  dir="ltr"
-                >
-                  <span className="w-2 h-2 bg-coral rounded-full border border-ink"></span>
-                  {tool}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-8 flex flex-col gap-3">
-              {nextDay && (
-                <Link
-                  href={`/day/${nextDay}`}
-                  className="retro-btn bg-sage text-ink font-pixel text-xs py-3 px-4 border-2 border-ink rounded-lg shadow-retro-sm w-full flex items-center justify-between hover:bg-sage-light"
-                >
-                  <ArrowRight size={16} /> <span>اليوم التالي</span>
-                </Link>
-              )}
-              {prevDay && (
-                <Link
-                  href={`/day/${prevDay}`}
-                  className="retro-btn bg-cream text-ink font-pixel text-xs py-3 px-4 border-2 border-ink rounded-lg shadow-retro-sm w-full flex items-center justify-between hover:bg-cream-dark"
-                >
-                  <span>اليوم السابق</span> <ArrowLeft size={16} />
-                </Link>
-              )}
-            </div>
           </div>
-        </div>
+        </section>
+
+        {/* Terminal Checkpoints */}
+        <section className="bg-ink rounded-xl border-4 border-ink shadow-retro-lg overflow-hidden flex flex-col">
+          <div className="bg-cream-dark border-b-4 border-ink p-2 flex items-center justify-between" dir="ltr">
+             <div className="flex gap-2 pl-2">
+               <div className="w-3 h-3 rounded-full bg-coral border border-ink"></div>
+               <div className="w-3 h-3 rounded-full bg-mustard border border-ink"></div>
+               <div className="w-3 h-3 rounded-full bg-sage border border-ink"></div>
+             </div>
+             <div className="font-pixel text-[10px] text-ink pr-2">CHECKPOINTS.EXE</div>
+          </div>
+          <div className="p-6 bg-ink text-sage font-mono text-sm sm:text-base leading-relaxed space-y-4">
+            <div dir="ltr" className="text-dusty-blue mb-2">&gt; INIT MODULE_0{dayData.id}...</div>
+            {dayData.points.map((point, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <span className="text-mustard shrink-0 mt-1" dir="ltr">[{index + 1}]</span>
+                <p className="text-cream">{point}</p>
+              </div>
+            ))}
+            <div dir="ltr" className="text-coral mt-4 animate-pulse">&gt; _</div>
+          </div>
+        </section>
+      </div>
+
+      <div className="flex justify-between items-center mt-12 border-t-2 border-ink/20 pt-6">
+        {nextDay ? (
+          <Link href={`/day/${nextDay}`} className="retro-btn bg-coral text-cream font-pixel text-xs py-3 px-6 border-3 border-ink rounded-xl shadow-retro hover:bg-coral-dark flex items-center gap-2 transition-transform hover:-translate-y-1">
+            <ArrowRight size={16} /> <span className="mt-1">اليوم التالي</span>
+          </Link>
+        ) : <div></div>}
+        
+        {prevDay ? (
+          <Link href={`/day/${prevDay}`} className="retro-btn bg-dusty-blue text-cream font-pixel text-xs py-3 px-6 border-3 border-ink rounded-xl shadow-retro hover:bg-dusty-blue-dark flex items-center gap-2 transition-transform hover:-translate-y-1">
+             <span className="mt-1">اليوم السابق</span> <ArrowLeft size={16} />
+          </Link>
+        ) : <div></div>}
       </div>
     </div>
   );
