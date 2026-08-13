@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { LucideIcon } from "lucide-react";
+import { useLocale } from "@/context/LocaleContext";
 
 interface ModuleCardProps {
   id: number;
@@ -18,6 +21,7 @@ export default function ModuleCard({
   colorClass,
   tapeColor,
 }: ModuleCardProps) {
+  const { t } = useLocale();
   // Mapping color class to Tailwind background/text classes for the icon container
   const colorMap: Record<string, { bg: string; text: string; button: string; buttonText: string }> = {
     "dusty-blue": { bg: "bg-dusty-blue/20", text: "text-dusty-blue", button: "bg-dusty-blue", buttonText: "text-cream" },
@@ -36,7 +40,8 @@ export default function ModuleCard({
           <Icon size={40} className={colors.text} strokeWidth={1.5} />
         </div>
         <div className="font-pixel text-[10px] text-coral mb-1" dir="ltr">
-          MODULE #0{id}
+          {t.moduleCard.modulePrefix}
+          {id}
         </div>
         <h4 className="font-heading text-xl text-ink mb-1">{shortTitle}</h4>
         <p className="font-body text-xs text-ink/80 mb-3">{goal}</p>
@@ -46,7 +51,7 @@ export default function ModuleCard({
         className={`retro-btn ${colors.button} ${colors.buttonText} font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full text-center block uppercase`}
         dir="ltr"
       >
-        VIEW SCHEMATIC
+        {t.moduleCard.viewSchematic}
       </Link>
     </div>
   );
