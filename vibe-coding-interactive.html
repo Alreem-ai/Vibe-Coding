@@ -498,6 +498,27 @@
             } catch(e) {}
         }
 
+        function playSequence(notes, gapMs = 100) {
+            notes.forEach((note, i) => {
+                setTimeout(() => playBeep(note.freq, note.type, note.duration), i * gapMs);
+            });
+        }
+
+        function playChirp(startFreq, endFreq, duration, type = 'triangle') {
+            if (!soundEnabled || !audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(startFreq, audioCtx.currentTime);
+            osc.frequency.linearRampToValueAtTime(endFreq, audioCtx.currentTime + duration);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
         function toggleAudio() {
             soundEnabled = !soundEnabled;
             if (soundEnabled) {
@@ -547,7 +568,7 @@
         });
 
         function mascotExpressiveClick() {
-            playBeep(880, 'square', 0.12);
+            playChirp(400, 900, 0.15, 'triangle');
             currentMoodIdx = (currentMoodIdx + 1) % mascotMoods.length;
             const mood = mascotMoods[currentMoodIdx];
 
@@ -571,7 +592,7 @@
 
         function rotateKnob(knobId, event) {
             event.stopPropagation();
-            playBeep(350, 'sawtooth', 0.08);
+            playBeep(300 + Math.random() * 100, 'sawtooth', 0.05);
             const knob = document.getElementById(knobId);
             const currentRotation = knob.dataset.rotation ? parseInt(knob.dataset.rotation) : 0;
             const newRotation = currentRotation + 45;
@@ -609,7 +630,11 @@
 
         /* --- TAB NAVIGATION & MODALS --- */
         function switchTab(tab) {
-            playBeep(400, 'triangle', 0.08);
+            playSequence([
+                { freq: 523, type: 'square', duration: 0.1 },
+                { freq: 659, type: 'square', duration: 0.1 },
+                { freq: 784, type: 'square', duration: 0.1 }
+            ], 100);
             const guideSec = document.getElementById('guide-section');
             const termTab = document.getElementById('terminal-tab');
             const guideBtn = document.getElementById('tab-btn-guide');
@@ -634,14 +659,14 @@
         }
 
         function openGuideModal(title, text) {
-            playBeep(600, 'sine', 0.1);
+            playBeep(600, 'square', 0.08);
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-body').innerText = text;
             document.getElementById('guide-modal').classList.remove('hidden');
         }
 
         function closeGuideModal() {
-            playBeep(300, 'sine', 0.08);
+            playBeep(600, 'square', 0.08);
             document.getElementById('guide-modal').classList.add('hidden');
         }
 
@@ -675,7 +700,7 @@
             const query = inputEl.value.trim();
             if (!query) return;
 
-            playBeep(700, 'square', 0.05);
+            playBeep(600, 'square', 0.08);
             const logs = document.getElementById('terminal-logs');
 
             const userMsg = document.createElement('div');
@@ -702,6 +727,17 @@
                 logs.scrollTop = logs.scrollHeight;
             }, 500);
         }
+
+        window.addEventListener('load', () => {
+            if (soundEnabled) {
+                playSequence([
+                    { freq: 262, type: 'square', duration: 0.12 },
+                    { freq: 330, type: 'square', duration: 0.12 },
+                    { freq: 392, type: 'square', duration: 0.12 },
+                    { freq: 523, type: 'square', duration: 0.2 }
+                ], 90);
+            }
+        });
     </script>
 </body>
 </html>
