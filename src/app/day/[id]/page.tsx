@@ -85,6 +85,17 @@ export default async function DayPage({ params }: { params: Promise<{ id: string
             </ul>
           </section>
 
+          <section>
+            <h3 className="font-heading text-2xl text-ink mb-4">
+              معاينة الشرائح
+            </h3>
+            <div className="crt-screen aspect-video flex items-center justify-center">
+              <span className="font-pixel text-xs text-sage/70" dir="ltr">
+                SLIDE EMBED — DAY {dayData.id}
+              </span>
+            </div>
+          </section>
+
           {dayData.schedule && dayData.schedule.length > 0 && (
             <section>
               <h3 className="font-heading text-2xl text-ink mb-4 flex items-center gap-2">
