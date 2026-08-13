@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { RefreshCcw, MessageCircle } from "lucide-react";
 import ModuleCard from "@/components/ModuleCard";
 import Mascot from "@/components/Mascot";
@@ -37,9 +38,9 @@ export default function Home() {
               <a href="#curriculum" className="retro-btn bg-coral text-cream font-pixel text-sm px-5 py-3 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-coral-dark" dir="ltr">
                 <RefreshCcw size={18} /> {t.home.heroCta}
               </a>
-              <a href="#behind-the-scenes" className="retro-btn bg-dusty-blue text-cream font-pixel text-sm px-4 py-3 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-dusty-blue-dark" dir="ltr">
+              <Link href="/terminal" className="retro-btn bg-dusty-blue text-cream font-pixel text-sm px-4 py-3 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-dusty-blue-dark" dir="ltr">
                 <MessageCircle size={18} /> {t.home.talkToPixel}
-              </a>
+              </Link>
             </div>
 
             <div
