@@ -4,15 +4,9 @@ import { ArrowLeft, ArrowRight, Target, Cpu, MessageSquare, Terminal, CheckCircl
 export default function Day2Page() {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <style>{`
-        body {
-          background-color: #9cb4a7 !important;
-        }
-        .bg-texture {
-          background-color: #F6F3E7 !important;
-          background-image: none !important;
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{ __html: `
+        body { background-color: color-mix(in srgb, var(--color-sage) 35%, var(--color-cream-dark)) !important; }
+      `}} />
       
       {/* Header */}
       <div className="flex flex-col lg:flex-row gap-6 items-start justify-between mb-10">

@@ -4,15 +4,9 @@ import { ArrowLeft, ArrowRight, Target, Cpu, MessageSquare, Terminal, CheckCircl
 export default function Day1Page() {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <style>{`
-        body {
-          background-color: #9cadb4 !important; /* لونك الأزرق الخفيف */
-        }
-        .bg-texture {
-          background-color: #F6F3E7 !important;
-          background-image: none !important;
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{ __html: `
+        body { background-color: color-mix(in srgb, var(--color-dusty-blue) 35%, var(--color-cream-dark)) !important; }
+      `}} />
       
       {/* Restored Retro Header */}
       <div className="flex flex-col lg:flex-row gap-6 items-start justify-between mb-10">

@@ -83,28 +83,28 @@ const ar: Translations = {
   },
   mascot: {
     moods: [
-      "بيب بوب! الأنظمة تعمل بشكل طبيعي!",
+      "الأنظمة مستقرة وتعمل بكفاءة عالية.",
       "أوه! هل كتبتوا للتو برومبت؟",
       "جاري الفحص... الكود يبدو نظيفًا.",
       "جارِ مزامنة مشروعك!",
     ],
   },
   moduleCard: {
-    modulePrefix: "الوحدة #0",
+    modulePrefix: "اليوم 0",
     viewSchematic: "عرض التفاصيل",
   },
   home: {
     systemStatus: "حالة النظام: متصلة",
-    heroHeadingPrefix: "تكلّموا... وخلّوا",
-    heroHeadingHighlight: "الكود",
-    heroHeadingSuffix: "يصير وحده",
+    heroHeadingPrefix: "من مجرد فكرة... إلى",
+    heroHeadingHighlight: "كود برمجي",
+    heroHeadingSuffix: "في ثوانٍ",
     heroParagraph:
       'أهلاً فيكم! برنامج البرمجة التوليدية برنامج تدريبي مكثف مدته 5 أيام، يعلّمكم تبنون تطبيقات حقيقية بالوصف الطبيعي بدل الكتابة اليدوية للكود.\n\nمن أساسيات الذكاء الاصطناعي التوليدي وهندسة الأوامر، مرورًا ببناء أنظمة وتطبيقات الويب وربط الذكاء الاصطناعي، وصولًا لاختبار المشاريع ونشرها فعليًا على الويب. روبوتنا الصغير "بكسل" بيرافقكم خطوة بخطوة.',
     heroCta: "ابدأ الآن",
     talkToPixel: "تكلموا مع بكسل",
-    terminalCommand: "أمر الطرفية",
-    terminalReady: "> جاهز",
-    terminalPrompt: "> برومبت + تشغيل // الوضع: فايب // الأداة: جيميناي",
+    terminalCommand: "guest@vibe-coding: ~",
+    terminalReady: "[ONLINE]",
+    terminalPrompt: "> npx vibe-coding init --engine=gemini",
     helperBlob: "المساعد الصغير",
     catalogLabel: "الفهرس والوحدات",
     catalogHeading: "مسار Vibe Coding",
@@ -164,7 +164,7 @@ const en: Translations = {
     ],
   },
   moduleCard: {
-    modulePrefix: "MODULE #0",
+    modulePrefix: "DAY #0",
     viewSchematic: "VIEW SCHEMATIC",
   },
   home: {

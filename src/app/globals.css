@@ -14,10 +14,10 @@
   --color-ink: #3D3530; /* Lighter charcoal for less aggressive contrast */
   --color-translucent-blue: rgba(77, 124, 138, 0.4);
 
-  --font-heading: var(--font-alexandria), sans-serif;
+  --font-heading: var(--font-almarai), sans-serif;
   --font-pixel: var(--font-silkscreen), monospace;
   --font-mono: var(--font-space-mono), monospace;
-  --font-body: var(--font-ibm-plex-sans-arabic), sans-serif;
+  --font-body: var(--font-almarai), sans-serif;
 
   --shadow-retro: 3px 3px 0px rgba(61, 53, 48, 0.1);
   --shadow-retro-lg: 6px 6px 0px rgba(61, 53, 48, 0.08);

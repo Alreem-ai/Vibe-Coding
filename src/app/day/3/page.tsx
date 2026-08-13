@@ -4,15 +4,9 @@ import { ArrowLeft, ArrowRight, Target, Layout, Database, Bug, Cpu, Lightbulb, I
 export default function Day3Page() {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <style>{`
-        body {
-          background-color: #deb1a5 !important;
-        }
-        .bg-texture {
-          background-color: #F6F3E7 !important;
-          background-image: none !important;
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{ __html: `
+        body { background-color: color-mix(in srgb, var(--color-coral) 35%, var(--color-cream-dark)) !important; }
+      `}} />
       
       {/* Header */}
       <div className="flex flex-col lg:flex-row gap-6 items-start justify-between mb-10">

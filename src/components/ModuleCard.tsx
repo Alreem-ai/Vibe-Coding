@@ -34,12 +34,12 @@ export default function ModuleCard({
   const colors = colorMap[colorClass] || colorMap["dusty-blue"];
 
   return (
-    <div className="bg-cream border-3 border-ink rounded-xl p-4 shadow-retro relative flex flex-col justify-between hover:-translate-y-1 transition-transform">
+    <div className="bg-cream rounded-xl p-4 shadow-retro relative flex flex-col justify-between hover:-translate-y-1 transition-transform">
       <div>
-        <div className={`${colors.bg} p-3 rounded-lg border-2 border-ink mb-3 flex items-center justify-center`}>
+        <div className={`${colors.bg} p-3 rounded-lg mb-3 flex items-center justify-center`}>
           <Icon size={40} className={colors.text} strokeWidth={1.5} />
         </div>
-        <div className="font-pixel text-[10px] text-coral mb-1" dir="ltr">
+        <div className="font-pixel text-[10px] text-coral mb-1">
           {t.moduleCard.modulePrefix}
           {id}
         </div>

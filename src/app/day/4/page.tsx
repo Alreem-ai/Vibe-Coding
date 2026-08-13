@@ -4,15 +4,9 @@ import { ArrowLeft, ArrowRight, Target, GitBranch, Cloud, Rocket, CheckCircle2, 
 export default function Day4Page() {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <style>{`
-        body {
-          background-color: #e1c396 !important; /* Retro Sand */
-        }
-        .bg-texture {
-          background-color: #F6F3E7 !important;
-          background-image: none !important;
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{ __html: `
+        body { background-color: color-mix(in srgb, var(--color-mustard) 35%, var(--color-cream-dark)) !important; }
+      `}} />
       
       {/* Header */}
       <div className="flex flex-col lg:flex-row gap-6 items-start justify-between mb-10">
