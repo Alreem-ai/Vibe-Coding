@@ -102,6 +102,7 @@
 
         .retro-btn { transition: all 0.1s ease; }
         .retro-btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0px #2B211B !important; }
+        .tab-active { outline: 3px solid #2B211B; outline-offset: 2px; transform: translate(2px, 2px); box-shadow: 2px 2px 0px #2B211B !important; }
 
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #EBE5D3; border-left: 2px solid #2B211B; }
@@ -120,7 +121,7 @@
             <div class="bg-coral text-cream font-pixel text-xs px-3 py-1.5 border-2 border-ink shadow-retro-sm rotate-3 flex items-center gap-1">
                 <i class="fa-solid fa-stamp"></i> GDG · VIBE #01
             </div>
-            <div class="hidden sm:flex bg-mustard text-ink font-pixel text-xs px-2 py-1 border-2 border-ink -rotate-2">
+            <div class="hidden sm:flex bg-mustard/60 text-ink font-pixel text-xs px-2 py-1 border border-dashed border-ink/60 -rotate-2 select-none" title="Module 5 of 5">
                 REF: 05/5
             </div>
         </div>
@@ -142,10 +143,10 @@
                 <button id="audio-toggle" onclick="toggleAudio()" class="retro-btn bg-sage text-ink font-mono font-bold text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro flex items-center gap-2 hover:bg-sage-light" dir="ltr">
                     <i id="audio-icon" class="fa-solid fa-volume-xmark"></i> <span id="audio-status">SOUND: OFF</span>
                 </button>
-                <button onclick="switchTab('guide')" class="retro-btn bg-mustard text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-mustard-light" dir="ltr">
+                <button id="tab-btn-guide" onclick="switchTab('guide')" title="الدليل — عرض وحدات المسار" class="retro-btn tab-active bg-mustard/80 text-ink font-pixel text-[10px] px-2.5 py-1.5 border border-ink rounded-lg shadow-retro-sm hover:bg-mustard-light" dir="ltr">
                     <i class="fa-solid fa-book-open ml-1"></i> GUIDE
                 </button>
-                <button onclick="switchTab('terminal')" class="retro-btn bg-coral text-cream font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-coral-dark" dir="ltr">
+                <button id="tab-btn-terminal" onclick="switchTab('terminal')" title="اسألي بكسل — الدردشة مع المساعد" class="retro-btn bg-coral/80 text-cream font-pixel text-[10px] px-2.5 py-1.5 border border-ink rounded-lg shadow-retro-sm hover:bg-coral-dark" dir="ltr">
                     <i class="fa-solid fa-terminal ml-1"></i> ASK PIXEL
                 </button>
             </div>
@@ -168,12 +169,12 @@
                         مسار Vibe Coding يعلّمك تبنين تطبيقات حقيقية بالوصف الطبيعي، بمساعدة روبوتنا الصغير "بكسل" خطوة بخطوة.
                     </p>
 
-                    <div class="flex flex-wrap gap-3 mt-2">
-                        <button onclick="triggerSyncSequence()" class="retro-btn bg-coral text-cream font-pixel text-sm px-5 py-3 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-coral-dark" dir="ltr">
-                            <i class="fa-solid fa-arrows-rotate text-lg"></i> ESC / ENTR / SYNC
+                    <div class="flex flex-wrap items-center gap-3 mt-2">
+                        <button onclick="startExperience()" class="retro-btn bg-coral text-cream font-pixel text-base px-7 py-4 border-3 border-ink rounded-xl shadow-retro-lg flex items-center gap-2 hover:bg-coral-dark" dir="ltr">
+                            <i class="fa-solid fa-play text-lg"></i> START LEARNING <span class="text-[10px] font-body opacity-80" dir="rtl">— ابدأ التعلم</span>
                         </button>
-                        <button onclick="openMascotDialog()" class="retro-btn bg-dusty-blue text-cream font-pixel text-sm px-4 py-3 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-dusty-blue-dark" dir="ltr">
-                            <i class="fa-solid fa-comments"></i> TALK TO PIXEL
+                        <button onclick="openMascotDialog()" class="retro-btn bg-cream text-dusty-blue font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-2 hover:bg-cream-dark" dir="ltr">
+                            <i class="fa-solid fa-comments"></i> TALK TO PIXEL <span class="text-[9px] font-body opacity-80" dir="rtl">— تكلمي مع بكسل</span>
                         </button>
                     </div>
 
@@ -202,7 +203,7 @@
                     <div class="absolute top-2 right-10 w-24 h-6 tape-yellow z-20"></div>
                     <div class="absolute bottom-4 left-12 w-28 h-6 tape-sage z-20"></div>
 
-                    <div class="absolute right-2 top-8 bg-mustard text-ink font-pixel text-[10px] px-3 py-1.5 border-2 border-ink shadow-retro-sm rotate-[12deg] z-20 flex flex-col items-center" dir="ltr">
+                    <div class="absolute right-2 top-8 bg-mustard/60 text-ink font-pixel text-[10px] px-3 py-1.5 border border-dashed border-ink/60 rotate-[12deg] z-20 flex flex-col items-center select-none" dir="ltr" title="Decorative ticket stub">
                         <span>TICKET</span>
                         <span class="text-xs font-bold">#VIBE01</span>
                     </div>
@@ -231,7 +232,7 @@
 
                     <div id="mascot-container" class="relative z-10 flex flex-col items-center cursor-pointer group" onclick="mascotExpressiveClick()">
 
-                        <div id="mascot-speech" class="absolute -top-16 bg-cream text-ink font-pixel text-xs p-3 rounded-xl border-3 border-ink shadow-retro z-30 transition-all duration-300 transform scale-100 max-w-[220px] text-center" dir="ltr">
+                        <div id="mascot-speech" class="absolute -top-16 bg-cream text-ink font-pixel text-xs p-3 rounded-xl border-3 border-ink shadow-retro z-30 transition-all duration-300 transform scale-100 group-hover:scale-105 max-w-[220px] text-center" dir="ltr">
                             "BEEP BOOP! Click me to change my mood!"
                             <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-cream border-r-3 border-b-3 border-ink rotate-45"></div>
                         </div>
@@ -356,7 +357,7 @@
                         <p class="font-body text-xs text-ink/80 mb-3">كيف تصيغين طلب واضح ومحدد يعطيك كود قريب من اللي تبينه من أول مرة.</p>
                     </div>
                     <button onclick="openGuideModal('فن البرومبت', 'برومبت جيد يحتوي على الهدف الواضح، السياق التقني، والقيود المطلوبة. جربي تكتبين طلبك بثلاث خطوات: شنو تبين، بأي تقنية، وأي شكل نهائي.')" class="retro-btn bg-mustard text-ink font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
-                        VIEW SCHEMATIC
+                        VIEW SCHEMATIC <span class="text-[9px] font-body opacity-80" dir="rtl">— عرض التفاصيل</span>
                     </button>
                 </div>
 
@@ -371,7 +372,7 @@
                         <p class="font-body text-xs text-ink/80 mb-3">الفرق بين Cursor, Replit, و v0 ومتى تستخدمين كل أداة حسب مرحلة مشروعك.</p>
                     </div>
                     <button onclick="openGuideModal('أدوات التوليد', 'Cursor مناسب للتعديل داخل مشروع موجود. Replit بيئة تطوير كاملة بالمتصفح. v0/Figma AI لتوليد واجهات من وصف أو تصميم جاهز.')" class="retro-btn bg-sage text-ink font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
-                        VIEW SCHEMATIC
+                        VIEW SCHEMATIC <span class="text-[9px] font-body opacity-80" dir="rtl">— عرض التفاصيل</span>
                     </button>
                 </div>
 
@@ -386,7 +387,7 @@
                         <p class="font-body text-xs text-ink/80 mb-3">من فكرة بجملة وحدة إلى مشروع متكامل، ببرومبتات متتابعة ومنظمة.</p>
                     </div>
                     <button onclick="openGuideModal('بناء المشروع', 'ابدئي بهيكل عام للصفحات، ثم حسّني كل قسم ببرومبت منفصل. احفظي نسخة تشتغل قبل أي تعديل كبير حتى ترجعين لها لو تعقّد الوضع.')" class="retro-btn bg-coral text-cream font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
-                        VIEW SCHEMATIC
+                        VIEW SCHEMATIC <span class="text-[9px] font-body opacity-80" dir="rtl">— عرض التفاصيل</span>
                     </button>
                 </div>
 
@@ -401,7 +402,7 @@
                         <p class="font-body text-xs text-ink/80 mb-3">قراءة الكود المولّد نقديًا، تصحيح الأخطاء، وخطوات نشر بسيطة على Vercel أو Netlify.</p>
                     </div>
                     <button onclick="openGuideModal('التصحيح والنشر', 'لا تنشرين كود ما فهمتيه. اختبري كل ميزة قبل النشر، واسألي الأداة تشرح لك أي جزء غامض بالكود قبل الإطلاق النهائي.')" class="retro-btn bg-mustard text-ink font-pixel text-xs py-2 border-2 border-ink rounded-lg shadow-retro-sm w-full" dir="ltr">
-                        VIEW SCHEMATIC
+                        VIEW SCHEMATIC <span class="text-[9px] font-body opacity-80" dir="rtl">— عرض التفاصيل</span>
                     </button>
                 </div>
 
@@ -431,8 +432,9 @@
                 <form onsubmit="handleTerminalSubmit(event)" class="mt-4 flex gap-2">
                     <span class="font-mono text-mustard text-sm flex items-center">&gt;</span>
                     <input id="terminal-input" type="text" placeholder="Type your question (e.g. 'how do I write a good prompt?')..." class="flex-1 bg-black/60 border-2 border-sage/50 rounded px-3 py-2 font-mono text-xs sm:text-sm text-cream focus:outline-none focus:border-mustard">
-                    <button type="submit" class="retro-btn bg-mustard text-ink font-pixel text-xs px-4 py-2 border-2 border-ink rounded shadow-retro-sm">
-                        TRANSMIT
+                    <button type="submit" class="retro-btn bg-mustard text-ink font-pixel text-xs px-4 py-2 border-2 border-ink rounded shadow-retro-sm flex flex-col items-center leading-tight">
+                        <span dir="ltr">TRANSMIT</span>
+                        <span class="text-[8px] font-body opacity-80" dir="rtl">إرسال</span>
                     </button>
                 </form>
 
@@ -496,6 +498,27 @@
             } catch(e) {}
         }
 
+        function playSequence(notes, gapMs = 100) {
+            notes.forEach((note, i) => {
+                setTimeout(() => playBeep(note.freq, note.type, note.duration), i * gapMs);
+            });
+        }
+
+        function playChirp(startFreq, endFreq, duration, type = 'triangle') {
+            if (!soundEnabled || !audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(startFreq, audioCtx.currentTime);
+            osc.frequency.linearRampToValueAtTime(endFreq, audioCtx.currentTime + duration);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
         function toggleAudio() {
             soundEnabled = !soundEnabled;
             if (soundEnabled) {
@@ -545,7 +568,7 @@
         });
 
         function mascotExpressiveClick() {
-            playBeep(880, 'square', 0.12);
+            playChirp(400, 900, 0.15, 'triangle');
             currentMoodIdx = (currentMoodIdx + 1) % mascotMoods.length;
             const mood = mascotMoods[currentMoodIdx];
 
@@ -561,13 +584,15 @@
         }
 
         function openMascotDialog() {
-            mascotExpressiveClick();
-            document.getElementById('mascot-speech').innerText = "LET'S TALK! Switch to the ASK PIXEL tab above!";
+            playBeep(880, 'square', 0.12);
+            document.getElementById('mascot-speech').innerText = "LET'S TALK! Opening my chat...";
+            switchTab('terminal');
+            setTimeout(() => document.getElementById('terminal-input').focus(), 400);
         }
 
         function rotateKnob(knobId, event) {
             event.stopPropagation();
-            playBeep(350, 'sawtooth', 0.08);
+            playBeep(300 + Math.random() * 100, 'sawtooth', 0.05);
             const knob = document.getElementById(knobId);
             const currentRotation = knob.dataset.rotation ? parseInt(knob.dataset.rotation) : 0;
             const newRotation = currentRotation + 45;
@@ -581,6 +606,11 @@
             if (inner) {
                 inner.classList.toggle('translate-y-1');
             }
+        }
+
+        function startExperience() {
+            triggerSyncSequence();
+            switchTab('guide');
         }
 
         function triggerSyncSequence() {
@@ -600,28 +630,43 @@
 
         /* --- TAB NAVIGATION & MODALS --- */
         function switchTab(tab) {
-            playBeep(400, 'triangle', 0.08);
+            playSequence([
+                { freq: 523, type: 'square', duration: 0.1 },
+                { freq: 659, type: 'square', duration: 0.1 },
+                { freq: 784, type: 'square', duration: 0.1 }
+            ], 100);
             const guideSec = document.getElementById('guide-section');
             const termTab = document.getElementById('terminal-tab');
+            const guideBtn = document.getElementById('tab-btn-guide');
+            const termBtn = document.getElementById('tab-btn-terminal');
 
+            let target;
             if (tab === 'terminal') {
                 guideSec.classList.add('hidden');
                 termTab.classList.remove('hidden');
+                termBtn.classList.add('tab-active');
+                guideBtn.classList.remove('tab-active');
+                target = termTab;
             } else {
                 guideSec.classList.remove('hidden');
                 termTab.classList.add('hidden');
+                guideBtn.classList.add('tab-active');
+                termBtn.classList.remove('tab-active');
+                target = guideSec;
             }
+
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function openGuideModal(title, text) {
-            playBeep(600, 'sine', 0.1);
+            playBeep(600, 'square', 0.08);
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-body').innerText = text;
             document.getElementById('guide-modal').classList.remove('hidden');
         }
 
         function closeGuideModal() {
-            playBeep(300, 'sine', 0.08);
+            playBeep(600, 'square', 0.08);
             document.getElementById('guide-modal').classList.add('hidden');
         }
 
@@ -655,7 +700,7 @@
             const query = inputEl.value.trim();
             if (!query) return;
 
-            playBeep(700, 'square', 0.05);
+            playBeep(600, 'square', 0.08);
             const logs = document.getElementById('terminal-logs');
 
             const userMsg = document.createElement('div');
@@ -682,6 +727,17 @@
                 logs.scrollTop = logs.scrollHeight;
             }, 500);
         }
+
+        window.addEventListener('load', () => {
+            if (soundEnabled) {
+                playSequence([
+                    { freq: 262, type: 'square', duration: 0.12 },
+                    { freq: 330, type: 'square', duration: 0.12 },
+                    { freq: 392, type: 'square', duration: 0.12 },
+                    { freq: 523, type: 'square', duration: 0.2 }
+                ], 90);
+            }
+        });
     </script>
 </body>
 </html>
