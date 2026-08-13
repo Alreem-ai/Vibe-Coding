@@ -48,16 +48,6 @@ export default function RootLayout({
           <div className="paper-grain"></div>
           <div className="p-2 md:p-6">
             <div className="max-w-7xl mx-auto bg-cream-dark border-4 border-ink rounded-2xl p-4 md:p-8 shadow-retro-lg relative my-2 md:my-6 overflow-hidden">
-              {/* Top Badges */}
-              <div className="absolute top-3 left-4 flex items-center gap-2 z-10" dir="ltr">
-                <div className="bg-coral text-cream font-pixel text-xs px-3 py-1.5 border-2 border-ink shadow-retro-sm rotate-3 flex items-center gap-1">
-                  GDG · VIBE #01
-                </div>
-                <div className="hidden sm:flex bg-mustard text-ink font-pixel text-xs px-2 py-1 border-2 border-ink -rotate-2">
-                  REF: 05/5
-                </div>
-              </div>
-
               <Header />
               {children}
               <Footer />
