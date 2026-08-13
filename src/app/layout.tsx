@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   title: "Vibe Coding | البرمجة التوليدية",
   description: "دليل البرمجة التوليدية - معسكر Vibe Coding",
   icons: {
-    icon: "/Pixel.png",
+    icon: "/Pixel.svg",
   },
 };
 
