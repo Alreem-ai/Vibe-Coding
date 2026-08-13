@@ -84,9 +84,6 @@ export default function Home() {
             <div className="absolute w-[85%] h-[90%] bg-cream border-3 border-ink rounded-2xl shadow-retro rotate-2 z-0"></div>
             <div className="absolute w-[80%] h-[85%] bg-sage-light/40 border-2 border-dashed border-ink rounded-xl -rotate-2 z-0"></div>
 
-            <div className="absolute top-4 right-16 sm:right-20 w-24 h-6 tape-yellow z-20"></div>
-            <div className="absolute bottom-8 left-12 sm:left-16 w-28 h-6 tape-sage z-20"></div>
-
 
 
             <Mascot />

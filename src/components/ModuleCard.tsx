@@ -31,7 +31,6 @@ export default function ModuleCard({
 
   return (
     <div className="bg-cream border-3 border-ink rounded-xl p-4 shadow-retro relative flex flex-col justify-between hover:-translate-y-1 transition-transform">
-      <div className={`absolute -top-3 right-4 w-16 h-5 ${tapeColor} z-10`}></div>
       <div>
         <div className={`${colors.bg} p-3 rounded-lg border-2 border-ink mb-3 flex items-center justify-center`}>
           <Icon size={40} className={colors.text} strokeWidth={1.5} />
