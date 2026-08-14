@@ -30,7 +30,7 @@ export interface CurriculumModule {
 export const curriculumData: CurriculumModule[] = [
   {
     id: 1,
-     isLocked: true,
+    
     icon: MessageSquare,
     colorClass: "dusty-blue",
     tapeColor: "tape-pink",
@@ -93,7 +93,6 @@ export const curriculumData: CurriculumModule[] = [
   },
   {
     id: 2,
-     isLocked: true,
     icon: Wrench,
     colorClass: "sage",
     tapeColor: "tape-sage",
@@ -127,7 +126,6 @@ export const curriculumData: CurriculumModule[] = [
     icon: Code,
     colorClass: "coral",
     tapeColor: "tape-yellow",
-    isLocked: true,
     lockedStyle: "warning",
     ar: {
       title: "تصحيح الأخطاء وربط الأنظمة (APIs & Integration)",
@@ -159,7 +157,6 @@ export const curriculumData: CurriculumModule[] = [
     icon: Rocket,
     colorClass: "mustard",
     tapeColor: "tape-pink",
-    isLocked: true,
     lockedStyle: "encrypted",
     ar: {
       title: "النشر السحابي وتكامل النظام (Deployment & Integration)",
@@ -191,7 +188,6 @@ export const curriculumData: CurriculumModule[] = [
     icon: PlayCircle,
     colorClass: "ink",
     tapeColor: "tape-sage",
-    isLocked: true,
     lockedStyle: "ghost",
     ar: {
       title: "معرض المشاريع والتقييم (Project Showcase)",
