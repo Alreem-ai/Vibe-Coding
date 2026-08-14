@@ -37,7 +37,7 @@ export default async function DayPage({ params }: { params: Promise<{ id: string
                 <span className="bg-ink text-cream font-pixel text-xs px-2 py-1 border-2 border-ink" dir="ltr">MODULE_0{dayData.id}</span>
                 <span className="font-pixel text-[10px] text-dusty-blue uppercase" dir="ltr">CONFIDENTIAL_DATA</span>
              </div>
-             <h1 className="font-heading text-3xl md:text-4xl text-ink leading-tight">{dayData.title}</h1>
+             <h1 className="font-heading text-3xl md:text-4xl text-ink leading-tight">{dayData.ar.title}</h1>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@ export default async function DayPage({ params }: { params: Promise<{ id: string
               <Target size={24} className="text-coral" /> الهدف الرئيسي
             </h2>
             <p className="font-body text-lg text-ink font-semibold leading-relaxed">
-              {dayData.goal}
+              {dayData.ar.goal}
             </p>
           </div>
         </section>
@@ -68,7 +68,7 @@ export default async function DayPage({ params }: { params: Promise<{ id: string
           </div>
           <div className="p-6 bg-ink text-sage font-mono text-sm sm:text-base leading-relaxed space-y-4">
             <div dir="ltr" className="text-dusty-blue mb-2">&gt; INIT MODULE_0{dayData.id}...</div>
-            {dayData.points.map((point, index) => (
+            {dayData.ar.points.map((point: string, index: number) => (
               <div key={index} className="flex items-start gap-3">
                 <span className="text-mustard shrink-0 mt-1" dir="ltr">[{index + 1}]</span>
                 <p className="text-cream">{point}</p>

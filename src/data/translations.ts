@@ -42,6 +42,8 @@ export interface Translations {
     behindText: string;
     founderName: string;
     founderBio: string;
+    coFounderName: string;
+    coFounderBio: string;
   };
   day: {
     dayLabel: (id: number) => string;
@@ -85,10 +87,10 @@ const ar: Translations = {
   },
   mascot: {
     moods: [
-      "الأنظمة مستقرة وتعمل بكفاءة عالية.",
-      "أوه! هل كتبتوا للتو برومبت؟",
-      "جاري الفحص... الكود يبدو نظيفًا.",
-      "جارِ مزامنة مشروعك!",
+      "أتمتة المهام البرمجية تبدأ بكتابة موجه دقيق.",
+      "حوّل الأفكار المعقدة إلى هيكلة برمجية متكاملة.",
+      "الذكاء الاصطناعي لا يكتب الكود عنك، بل يكتبه معك.",
+      "هندسة الأوامر هي لغة البرمجة المستقبلية.",
     ],
   },
   moduleCard: {
@@ -117,6 +119,8 @@ const ar: Translations = {
     behindText: "قريباً ... سيتم إضافة معلومات المدربين وكواليس المعسكر هنا.",
     founderName: "الريم الدوسري",
     founderBio: "نائبة نادي طويق في جامعة الأميرة نورة، قائدة نادي قوقل وسفيرة الذكاء الاصطناعي لدى قوقل.",
+    coFounderName: "دانه السيف",
+    coFounderBio: "طالبة هندسة برمجيات وشغوفة بمجالات الذكاء الاصطناعي. خريجة أكاديمية مطوري آبل وأكاديمية طويق.",
   },
   day: {
     dayLabel: (id: number) => `اليوم 0${id}`,
@@ -161,10 +165,10 @@ const en: Translations = {
   },
   mascot: {
     moods: [
-      "BEEP BOOP! Systems normal!",
-      "OH! Did you just write a prompt?",
-      "SCANNING... code looks clean.",
-      "SYNCING YOUR VIBE PROJECT!",
+      "Automating programming tasks begins with a precise prompt.",
+      "Transform complex ideas into a complete software architecture.",
+      "AI doesn't write code for you, it writes it with you.",
+      "Prompt engineering is the programming language of the future.",
     ],
   },
   moduleCard: {
@@ -193,6 +197,8 @@ const en: Translations = {
     behindText: "Coming soon... instructor bios and camp behind-the-scenes will be added here.",
     founderName: "Alreem Aldossary",
     founderBio: "Deputy Lead of Tuwaiq Club at Princess Nourah University, GDG on Campus Lead, and Google AI Ambassador.",
+    coFounderName: "Danah Alsaif",
+    coFounderBio: "Software Engineering student passionate about AI fields. Graduate of Apple Developer Academy and Tuwaiq Academy.",
   },
   day: {
     dayLabel: (id: number) => `DAY 0${id}`,

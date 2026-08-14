@@ -30,6 +30,7 @@ export interface CurriculumModule {
 export const curriculumData: CurriculumModule[] = [
   {
     id: 1,
+     isLocked: true,
     icon: MessageSquare,
     colorClass: "dusty-blue",
     tapeColor: "tape-pink",
@@ -92,6 +93,7 @@ export const curriculumData: CurriculumModule[] = [
   },
   {
     id: 2,
+     isLocked: true,
     icon: Wrench,
     colorClass: "sage",
     tapeColor: "tape-sage",

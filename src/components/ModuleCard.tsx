@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { LucideIcon, Lock, ShieldAlert, Undo2 } from "lucide-react";
+import { LucideIcon, Lock, Undo2 } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 
 interface ModuleCardProps {

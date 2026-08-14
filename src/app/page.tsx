@@ -151,39 +151,80 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-cream border-3 border-ink rounded-xl shadow-retro p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8">
-          <div className="shrink-0 border-4 border-ink rounded-2xl shadow-retro rotate-[-2deg] overflow-hidden w-40 h-40 md:w-48 md:h-48 bg-cream-dark">
-            <Image
-              src="/images/founder.jpg"
-              alt={t.home.founderName}
-              width={192}
-              height={192}
-              className="w-full h-full object-cover"
-            />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Alreem Card */}
+          <div className="bg-cream border-3 border-ink rounded-xl shadow-retro p-6 flex flex-col md:flex-row items-center gap-6">
+            <div className="shrink-0 border-4 border-ink rounded-2xl shadow-retro rotate-[-2deg] overflow-hidden w-32 h-32 bg-cream-dark">
+              <Image
+                src="/images/founder.jpg"
+                alt={t.home.founderName}
+                width={128}
+                height={128}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="flex flex-col items-center md:items-start text-center md:text-start gap-3">
+              <h4 className="font-heading text-2xl text-ink">{t.home.founderName}</h4>
+              <p className="font-body text-sm text-ink/80 leading-relaxed">
+                {t.home.founderBio}
+              </p>
+              <div className="flex items-center gap-2 mt-1 flex-wrap justify-center md:justify-start" dir="ltr">
+                <a
+                  href="https://www.linkedin.com/in/alreem-r-aldossary-aa827030b"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="retro-btn bg-cream text-ink font-pixel text-[10px] px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-1.5 hover:bg-cream-dark"
+                >
+                  <LinkedinMark size={14} /> LinkedIn
+                </a>
+                <a
+                  href="https://x.com/AlreemDoss"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="retro-btn bg-cream text-ink font-pixel text-[10px] px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-1.5 hover:bg-cream-dark"
+                >
+                  <XIcon size={14} /> X
+                </a>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-col items-center md:items-start text-center md:text-start gap-3">
-            <h4 className="font-heading text-2xl text-ink">{t.home.founderName}</h4>
-            <p className="font-body text-sm md:text-base text-ink/80 leading-relaxed">
-              {t.home.founderBio}
-            </p>
-            <div className="flex items-center gap-3 mt-1" dir="ltr">
-              <a
-                href="https://www.linkedin.com/in/alreem-r-aldossary-aa827030b"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="retro-btn bg-cream text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-2 hover:bg-cream-dark"
-              >
-                <LinkedinMark size={16} /> LinkedIn
-              </a>
-              <a
-                href="https://x.com/AlreemDoss"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="retro-btn bg-cream text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-2 hover:bg-cream-dark"
-              >
-                <XIcon size={16} /> X
-              </a>
+          {/* Danah Card */}
+          <div className="bg-cream border-3 border-ink rounded-xl shadow-retro p-6 flex flex-col md:flex-row items-center gap-6">
+            <div className="shrink-0 border-4 border-ink rounded-2xl shadow-retro rotate-[2deg] overflow-hidden w-32 h-32 bg-cream-dark flex items-center justify-center p-2">
+              <Image
+                src="/images/danah.svg"
+                alt={t.home.coFounderName}
+                width={128}
+                height={128}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="flex flex-col items-center md:items-start text-center md:text-start gap-3">
+              <h4 className="font-heading text-2xl text-ink">{t.home.coFounderName}</h4>
+              <p className="font-body text-sm text-ink/80 leading-relaxed opacity-60">
+                {t.home.coFounderBio}
+              </p>
+              <div className="flex items-center gap-2 mt-1 flex-wrap justify-center md:justify-start" dir="ltr">
+                <a
+                  href="https://www.linkedin.com/in/danah-saif-120699387?utm_source=share_via&utm_content=profile&utm_mediu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="retro-btn bg-cream text-ink font-pixel text-[10px] px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-1.5 hover:bg-cream-dark"
+                >
+                  <LinkedinMark size={14} /> LinkedIn
+                </a>
+                <a
+                  href="https://danah-saif-portfolio.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="retro-btn bg-cream text-ink font-pixel text-[10px] px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-1.5 hover:bg-cream-dark"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Portfolio
+                </a>
+              </div>
             </div>
           </div>
         </div>
