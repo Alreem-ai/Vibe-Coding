@@ -40,6 +40,8 @@ export interface Translations {
     behindHeading: string;
     soon: string;
     behindText: string;
+    founderName: string;
+    founderBio: string;
   };
   day: {
     dayLabel: (id: number) => string;
@@ -113,6 +115,8 @@ const ar: Translations = {
     behindHeading: "خلف الستار",
     soon: "قريبًا",
     behindText: "قريباً ... سيتم إضافة معلومات المدربين وكواليس المعسكر هنا.",
+    founderName: "الريم الدوسري",
+    founderBio: "نائبة نادي طويق في جامعة الأميرة نورة، قائدة نادي قوقل وسفيرة الذكاء الاصطناعي لدى قوقل.",
   },
   day: {
     dayLabel: (id: number) => `اليوم 0${id}`,
@@ -187,6 +191,8 @@ const en: Translations = {
     behindHeading: "Behind the Scenes",
     soon: "SOON",
     behindText: "Coming soon... instructor bios and camp behind-the-scenes will be added here.",
+    founderName: "Alreem Aldossary",
+    founderBio: "Deputy Lead of Tuwaiq Club at Princess Nourah University, GDG on Campus Lead, and Google AI Ambassador.",
   },
   day: {
     dayLabel: (id: number) => `DAY 0${id}`,
