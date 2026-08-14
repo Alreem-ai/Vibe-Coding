@@ -1,11 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { RefreshCcw, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { RefreshCcw, MessageCircle, X as XIcon } from "lucide-react";
 import ModuleCard from "@/components/ModuleCard";
 import Mascot from "@/components/Mascot";
 import { curriculumData, localizeModule } from "@/data/curriculum";
 import { useLocale } from "@/context/LocaleContext";
+
+// lucide-react dropped brand icons, so LinkedIn is a small inline mark to match XIcon's sizing
+function LinkedinMark(props: { size?: number; className?: string }) {
+  const { size = 18, className } = props;
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z" />
+    </svg>
+  );
+}
 
 export default function Home() {
   const { locale, t } = useLocale();
@@ -127,19 +145,47 @@ export default function Home() {
             >
               {t.home.behindLabel}
             </span>
-            <h3 className="font-heading text-3xl text-ink flex items-center gap-3">
+            <h3 className="font-heading text-3xl text-ink">
               {t.home.behindHeading}
-              <span className="bg-mustard text-ink font-pixel text-xs px-2 py-1 border-2 border-ink shadow-retro-sm rotate-[-3deg] inline-block" dir="ltr">
-                {t.home.soon}
-              </span>
             </h3>
           </div>
         </div>
 
-        <div className="bg-ink/5 border-3 border-ink border-dashed rounded-xl p-8 flex items-center justify-center">
-            <p className="font-body text-ink/60 text-center">
-              {t.home.behindText}
+        <div className="bg-cream border-3 border-ink rounded-xl shadow-retro p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8">
+          <div className="shrink-0 border-4 border-ink rounded-2xl shadow-retro rotate-[-2deg] overflow-hidden w-40 h-40 md:w-48 md:h-48 bg-cream-dark">
+            <Image
+              src="/images/founder.jpg"
+              alt={t.home.founderName}
+              width={192}
+              height={192}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div className="flex flex-col items-center md:items-start text-center md:text-start gap-3">
+            <h4 className="font-heading text-2xl text-ink">{t.home.founderName}</h4>
+            <p className="font-body text-sm md:text-base text-ink/80 leading-relaxed">
+              {t.home.founderBio}
             </p>
+            <div className="flex items-center gap-3 mt-1" dir="ltr">
+              <a
+                href="https://www.linkedin.com/in/alreem-r-aldossary-aa827030b"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="retro-btn bg-cream text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-2 hover:bg-cream-dark"
+              >
+                <LinkedinMark size={16} /> LinkedIn
+              </a>
+              <a
+                href="https://x.com/AlreemDoss"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="retro-btn bg-cream text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-2 hover:bg-cream-dark"
+              >
+                <XIcon size={16} /> X
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </>
