@@ -15,7 +15,7 @@ export default function Home() {
       <main className="relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           <div className="lg:col-span-5 flex flex-col gap-4 z-10">
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-ink leading-tight">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-ink leading-tight">
               {t.home.heroHeadingPrefix}{" "}
               <span className="relative inline-block px-2">
                 <span className="relative z-10">{t.home.heroHeadingHighlight}</span>
@@ -29,10 +29,10 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap gap-3 mt-2">
-              <a href="#curriculum" className="retro-btn bg-coral text-cream font-pixel text-sm px-5 py-3 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-coral-dark" dir="ltr">
+              <a href="#curriculum" className="retro-btn bg-coral text-cream font-pixel text-sm px-6 py-4 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-coral-dark hover:-translate-y-1 transition-transform" dir="ltr">
                 <RefreshCcw size={18} /> {t.home.heroCta}
               </a>
-              <Link href="/terminal" className="retro-btn bg-dusty-blue text-cream font-pixel text-sm px-4 py-3 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-dusty-blue-dark" dir="ltr">
+              <Link href="/terminal" className="retro-btn bg-dusty-blue text-cream font-pixel text-sm px-5 py-4 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-dusty-blue-dark hover:-translate-y-1 transition-transform" dir="ltr">
                 <MessageCircle size={18} /> {t.home.talkToPixel}
               </Link>
             </div>
@@ -111,7 +111,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {curriculumData.map((module) => (
             <ModuleCard key={module.id} {...localizeModule(module, locale)} />
           ))}

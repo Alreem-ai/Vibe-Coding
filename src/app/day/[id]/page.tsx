@@ -1,6 +1,6 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Target, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, Target, Clock, Lock } from "lucide-react";
 import { curriculumData } from "@/data/curriculum";
 
 export function generateStaticParams() {
@@ -18,7 +18,12 @@ export default async function DayPage({ params }: { params: Promise<{ id: string
     notFound();
   }
 
+  if (dayData.isLocked) {
+    redirect("/");
+  }
+
   const prevDay = dayId > 1 ? dayId - 1 : null;
+  const nextDayData = curriculumData.find((d) => d.id === dayId + 1);
   const nextDay = dayId < curriculumData.length ? dayId + 1 : null;
 
   return (
@@ -79,6 +84,22 @@ export default async function DayPage({ params }: { params: Promise<{ id: string
           <Link href={`/day/${nextDay}`} className="retro-btn bg-coral text-cream font-pixel text-xs py-3 px-6 border-3 border-ink rounded-xl shadow-retro hover:bg-coral-dark flex items-center gap-2 transition-transform hover:-translate-y-1">
             <ArrowRight size={16} /> <span className="mt-1">اليوم التالي</span>
           </Link>
+        ) : nextDayData?.isLocked ? (
+          <div className="group relative">
+            {/* The actual button that doesn't navigate */}
+            <button className="retro-btn bg-ink/10 text-ink/70 font-pixel text-xs py-3 px-6 border-3 border-ink/30 rounded-xl flex items-center gap-2 transition-colors hover:bg-mustard/20 hover:text-mustard hover:border-mustard cursor-pointer">
+              <Lock size={14} className="group-hover:hidden" />
+              <ArrowRight size={14} className="hidden group-hover:block" /> 
+              <span className="mt-1">اليوم التالي</span>
+            </button>
+            {/* The simple sentence under the button that appears on hover */}
+            <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-max opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              <span className="bg-ink text-cream text-[10px] font-body px-3 py-1.5 rounded-lg whitespace-nowrap shadow-retro-sm">
+                سيُفتح في الأيام القادمة
+              </span>
+              <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-ink rotate-45"></div>
+            </div>
+          </div>
         ) : <div></div>}
         
         {prevDay ? (
@@ -90,3 +111,4 @@ export default async function DayPage({ params }: { params: Promise<{ id: string
     </div>
   );
 }
+

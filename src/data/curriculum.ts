@@ -21,6 +21,8 @@ export interface CurriculumModule {
   icon: LucideIcon;
   colorClass: string;
   tapeColor: string;
+  isLocked?: boolean;
+  lockedStyle?: "warning" | "encrypted" | "ghost";
   ar: LocalizedModuleContent;
   en: LocalizedModuleContent;
 }
@@ -123,6 +125,8 @@ export const curriculumData: CurriculumModule[] = [
     icon: Code,
     colorClass: "coral",
     tapeColor: "tape-yellow",
+    isLocked: true,
+    lockedStyle: "warning",
     ar: {
       title: "تصحيح الأخطاء وربط الأنظمة (APIs & Integration)",
       shortTitle: "ربط الأنظمة والأخطاء",
@@ -153,6 +157,8 @@ export const curriculumData: CurriculumModule[] = [
     icon: Rocket,
     colorClass: "mustard",
     tapeColor: "tape-pink",
+    isLocked: true,
+    lockedStyle: "encrypted",
     ar: {
       title: "النشر السحابي وتكامل النظام (Deployment & Integration)",
       shortTitle: "النشر السحابي",
@@ -183,6 +189,8 @@ export const curriculumData: CurriculumModule[] = [
     icon: PlayCircle,
     colorClass: "ink",
     tapeColor: "tape-sage",
+    isLocked: true,
+    lockedStyle: "ghost",
     ar: {
       title: "معرض المشاريع والتقييم (Project Showcase)",
       shortTitle: "العرض النهائي",
@@ -216,6 +224,8 @@ export function localizeModule(mod: CurriculumModule, locale: Locale) {
     icon: mod.icon,
     colorClass: mod.colorClass,
     tapeColor: mod.tapeColor,
+    isLocked: mod.isLocked,
+    lockedStyle: mod.lockedStyle,
     ...mod[locale],
   };
 }

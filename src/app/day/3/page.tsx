@@ -1,7 +1,16 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Target, Layout, Database, Bug, Cpu, Lightbulb, Image, Zap, CheckCircle2, MessageSquare, MonitorPlay, PlayCircle, Link as LinkIcon, Palette, Briefcase, Code2 } from "lucide-react";
+import { redirect } from "next/navigation";
+import { ArrowLeft, ArrowRight, Target, Layout, Database, Bug, Cpu, Lightbulb, Image, Zap, CheckCircle2, MessageSquare, MonitorPlay, PlayCircle, Link as LinkIcon, Palette, Briefcase, Code2, Lock } from "lucide-react";
+import { curriculumData } from "@/data/curriculum";
 
 export default function Day3Page() {
+  const dayData = curriculumData.find((d) => d.id === 3);
+  const isLocked = dayData?.isLocked;
+
+  if (isLocked) {
+    redirect("/");
+  }
+
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
       <style dangerouslySetInnerHTML={{ __html: `
@@ -27,7 +36,6 @@ export default function Day3Page() {
       </div>
 
       <div className="space-y-12 max-w-4xl mx-auto">
-        
         {/* Intro Box */}
         <section className="relative">
           <div className="absolute -left-2 top-4 w-6 h-12 bg-coral border-2 border-ink rounded-l z-0"></div>
@@ -281,13 +289,29 @@ export default function Day3Page() {
             </Link>
           </div>
         </section>
-
       </div>
 
       <div className="flex justify-between items-center mt-12 border-t-2 border-ink/10 pt-6 max-w-4xl mx-auto flex-row-reverse">
-        <Link href="/day/4" className="retro-btn bg-coral text-cream font-pixel text-xs py-3 px-6 border-2 border-ink rounded-xl shadow-retro-sm hover:bg-coral-dark flex items-center gap-2 transition-transform hover:-translate-y-1">
-          <span className="mt-1">اليوم التالي</span> <ArrowLeft size={16} />
-        </Link>
+        {/* Next Day Button (Day 4) */}
+        {curriculumData.find(d => d.id === 4)?.isLocked ? (
+          <div className="group relative">
+            <button className="retro-btn bg-ink/10 text-ink/70 font-pixel text-xs py-3 px-6 border-3 border-ink/30 rounded-xl flex items-center gap-2 transition-colors hover:bg-mustard/20 hover:text-mustard hover:border-mustard cursor-pointer">
+              <Lock size={14} className="group-hover:hidden" />
+              <ArrowLeft size={14} className="hidden group-hover:block" /> 
+              <span className="mt-1">اليوم التالي</span>
+            </button>
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-max opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              <span className="bg-ink text-cream text-[10px] font-body px-3 py-1.5 rounded-lg whitespace-nowrap shadow-retro-sm">
+                سيُفتح في الأيام القادمة
+              </span>
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-ink rotate-45"></div>
+            </div>
+          </div>
+        ) : (
+          <Link href="/day/4" className="retro-btn bg-coral text-cream font-pixel text-xs py-3 px-6 border-3 border-ink rounded-xl shadow-retro hover:bg-coral-dark flex items-center gap-2 transition-transform hover:-translate-y-1">
+            <span className="mt-1">اليوم التالي</span> <ArrowLeft size={16} />
+          </Link>
+        )}
         
         <Link href="/day/2" className="retro-btn bg-cream-dark text-ink font-pixel text-xs py-3 px-6 border-2 border-ink rounded-xl shadow-retro-sm hover:bg-cream flex items-center gap-2 transition-transform hover:-translate-y-1">
            <ArrowRight size={16} /> <span className="mt-1">اليوم السابق</span> 

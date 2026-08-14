@@ -9,7 +9,7 @@ import LocaleToggle from "./LocaleToggle";
 export default function Header() {
   const pathname = usePathname();
   const { t } = useLocale();
-  const isGuideActive = pathname === "/" || pathname.startsWith("/day");
+  const isGuideActive = pathname === "/";
   const isTerminalActive = pathname === "/terminal";
 
   return (
@@ -34,9 +34,9 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="flex items-center gap-3 flex-wrap justify-center">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-3 justify-center">
         <button
-          className="retro-btn bg-sage text-ink font-mono font-bold text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro flex items-center gap-2 hover:bg-sage-light"
+          className="retro-btn bg-sage text-ink font-mono font-bold text-xs sm:text-sm px-3 sm:px-4 py-2 border-2 border-ink rounded-lg shadow-retro flex items-center gap-2 hover:bg-sage-light hover:-translate-y-1 transition-transform"
           dir="ltr"
         >
           <VolumeX size={16} /> <span>{t.header.soundOff}</span>
@@ -44,22 +44,22 @@ export default function Header() {
         <Link
           href="/"
           data-nav="guide"
-          className={`nav-btn retro-btn bg-mustard text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-mustard-light flex items-center ${
+          className={`nav-btn retro-btn bg-mustard text-ink font-pixel text-xs sm:text-sm px-3 sm:px-4 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-mustard-light hover:-translate-y-1 transition-transform flex items-center ${
             isGuideActive ? "tab-active" : ""
           }`}
           dir="ltr"
         >
-          <BookOpen size={16} className="mr-1" /> {t.header.guide}
+          <BookOpen size={16} className="mr-1.5" /> {t.header.guide}
         </Link>
         <Link
           href="/terminal"
           data-nav="terminal"
-          className={`nav-btn retro-btn bg-coral text-cream font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-coral-dark flex items-center ${
+          className={`nav-btn retro-btn bg-coral text-cream font-pixel text-xs sm:text-sm px-3 sm:px-4 py-2 border-2 border-ink rounded-lg shadow-retro hover:bg-coral-dark hover:-translate-y-1 transition-transform flex items-center ${
             isTerminalActive ? "tab-active" : ""
           }`}
           dir="ltr"
         >
-          <Terminal size={16} className="mr-1" /> {t.header.askPixel}
+          <Terminal size={16} className="mr-1.5" /> {t.header.askPixel}
         </Link>
       </div>
     </header>
