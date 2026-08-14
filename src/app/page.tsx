@@ -1,11 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { RefreshCcw, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { RefreshCcw, MessageCircle, X as XIcon } from "lucide-react";
 import ModuleCard from "@/components/ModuleCard";
 import Mascot from "@/components/Mascot";
 import { curriculumData, localizeModule } from "@/data/curriculum";
 import { useLocale } from "@/context/LocaleContext";
+
+// lucide-react dropped brand icons, so LinkedIn is a small inline mark to match XIcon's sizing
+function LinkedinMark(props: { size?: number; className?: string }) {
+  const { size = 18, className } = props;
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z" />
+    </svg>
+  );
+}
 
 export default function Home() {
   const { locale, t } = useLocale();
@@ -15,7 +33,7 @@ export default function Home() {
       <main className="relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           <div className="lg:col-span-5 flex flex-col gap-4 z-10">
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-ink leading-tight">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-ink leading-tight">
               {t.home.heroHeadingPrefix}{" "}
               <span className="relative inline-block px-2">
                 <span className="relative z-10">{t.home.heroHeadingHighlight}</span>
@@ -29,10 +47,10 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap gap-3 mt-2">
-              <a href="#curriculum" className="retro-btn bg-coral text-cream font-pixel text-sm px-5 py-3 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-coral-dark" dir="ltr">
+              <a href="#curriculum" className="retro-btn bg-coral text-cream font-pixel text-sm px-6 py-4 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-coral-dark hover:-translate-y-1 transition-transform" dir="ltr">
                 <RefreshCcw size={18} /> {t.home.heroCta}
               </a>
-              <Link href="/terminal" className="retro-btn bg-dusty-blue text-cream font-pixel text-sm px-4 py-3 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-dusty-blue-dark" dir="ltr">
+              <Link href="/terminal" className="retro-btn bg-dusty-blue text-cream font-pixel text-sm px-5 py-4 border-3 border-ink rounded-xl shadow-retro flex items-center gap-2 hover:bg-dusty-blue-dark hover:-translate-y-1 transition-transform" dir="ltr">
                 <MessageCircle size={18} /> {t.home.talkToPixel}
               </Link>
             </div>
@@ -111,7 +129,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {curriculumData.map((module) => (
             <ModuleCard key={module.id} {...localizeModule(module, locale)} />
           ))}
@@ -127,19 +145,88 @@ export default function Home() {
             >
               {t.home.behindLabel}
             </span>
-            <h3 className="font-heading text-3xl text-ink flex items-center gap-3">
+            <h3 className="font-heading text-3xl text-ink">
               {t.home.behindHeading}
-              <span className="bg-mustard text-ink font-pixel text-xs px-2 py-1 border-2 border-ink shadow-retro-sm rotate-[-3deg] inline-block" dir="ltr">
-                {t.home.soon}
-              </span>
             </h3>
           </div>
         </div>
 
-        <div className="bg-ink/5 border-3 border-ink border-dashed rounded-xl p-8 flex items-center justify-center">
-            <p className="font-body text-ink/60 text-center">
-              {t.home.behindText}
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Alreem Card */}
+          <div className="bg-cream border-3 border-ink rounded-xl shadow-retro p-6 flex flex-col md:flex-row items-center gap-6">
+            <div className="shrink-0 border-4 border-ink rounded-2xl shadow-retro rotate-[-2deg] overflow-hidden w-32 h-32 bg-cream-dark">
+              <Image
+                src="/images/founder.jpg"
+                alt={t.home.founderName}
+                width={128}
+                height={128}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="flex flex-col items-center md:items-start text-center md:text-start gap-3">
+              <h4 className="font-heading text-2xl text-ink">{t.home.founderName}</h4>
+              <p className="font-body text-sm text-ink/80 leading-relaxed">
+                {t.home.founderBio}
+              </p>
+              <div className="flex items-center gap-2 mt-1 flex-wrap justify-center md:justify-start" dir="ltr">
+                <a
+                  href="https://www.linkedin.com/in/alreem-r-aldossary-aa827030b"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="retro-btn bg-cream text-ink font-pixel text-[10px] px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-1.5 hover:bg-cream-dark"
+                >
+                  <LinkedinMark size={14} /> LinkedIn
+                </a>
+                <a
+                  href="https://x.com/AlreemDoss"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="retro-btn bg-cream text-ink font-pixel text-[10px] px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-1.5 hover:bg-cream-dark"
+                >
+                  <XIcon size={14} /> X
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Danah Card */}
+          <div className="bg-cream border-3 border-ink rounded-xl shadow-retro p-6 flex flex-col md:flex-row items-center gap-6">
+            <div className="shrink-0 border-4 border-ink rounded-2xl shadow-retro rotate-[2deg] overflow-hidden w-32 h-32 bg-cream-dark flex items-center justify-center p-2">
+              <Image
+                src="/images/danah.svg"
+                alt={t.home.coFounderName}
+                width={128}
+                height={128}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="flex flex-col items-center md:items-start text-center md:text-start gap-3">
+              <h4 className="font-heading text-2xl text-ink">{t.home.coFounderName}</h4>
+              <p className="font-body text-sm text-ink/80 leading-relaxed opacity-60">
+                {t.home.coFounderBio}
+              </p>
+              <div className="flex items-center gap-2 mt-1 flex-wrap justify-center md:justify-start" dir="ltr">
+                <a
+                  href="https://www.linkedin.com/in/danah-saif-120699387?utm_source=share_via&utm_content=profile&utm_mediu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="retro-btn bg-cream text-ink font-pixel text-[10px] px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-1.5 hover:bg-cream-dark"
+                >
+                  <LinkedinMark size={14} /> LinkedIn
+                </a>
+                <a
+                  href="https://danah-saif-portfolio.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="retro-btn bg-cream text-ink font-pixel text-[10px] px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-1.5 hover:bg-cream-dark"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Portfolio
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>

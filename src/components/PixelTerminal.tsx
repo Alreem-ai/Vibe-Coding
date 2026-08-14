@@ -10,45 +10,45 @@ interface KnowledgeItem {
 
 const knowledgeBase: KnowledgeItem[] = [
   {
-    keys: ["prompt", "برومبت"],
+    keys: ["prompt", "برومبت", "هندسة الأوامر", "أمر"],
     reply:
-      "A good prompt has 3 parts: the GOAL (what you want), the CONTEXT (tech/library), and the CONSTRAINTS (style, behavior). Be specific — 'a product card with image, price, and buy button' beats just 'a card'.",
+      "لكتابة أوامر (Prompts) فعالة، احرص على تضمين ثلاثة عناصر رئيسية: الهدف الواضح، السياق التقني (مثل المكتبات المستخدمة)، والقيود (مثل أسلوب التصميم أو الأداء). الوضوح والدقة هما مفتاح الحصول على نتائج احترافية.",
   },
   {
-    keys: ["cursor"],
+    keys: ["cursor", "كيرسور"],
     reply:
-      "Cursor is best for editing code inside an existing project. Select the file or function, describe the change, and review the diff before accepting.",
+      "محرر Cursor يُعد خياراً ممتازاً لتعديل الأكواد ضمن مشاريع قائمة. يُنصح بتحديد الملف أو الدالة المستهدفة، ووصف التعديل المطلوب بدقة، ثم مراجعة التغييرات (Diff) قبل اعتمادها.",
   },
   {
-    keys: ["replit"],
+    keys: ["replit", "ريبلت"],
     reply:
-      "Replit gives you a full dev environment in the browser — great for building and running a whole small app from a single description.",
+      "منصة Replit توفر بيئة تطوير متكاملة سحابياً، وهي مثالية لبناء واختبار تطبيقات كاملة بسرعة انطلاقاً من وصف أولي متكامل.",
   },
   {
-    keys: ["v0", "figma"],
+    keys: ["v0", "figma", "تصميم", "واجهة"],
     reply:
-      "v0 and Figma AI turn a description or design into a working UI fast. Use them for the first draft of a screen, then refine by hand or with Cursor.",
+      "أدوات مثل v0 و Figma AI تتيح تحويل الأوصاف النصية أو التصاميم إلى واجهات مستخدم تفاعلية بسرعة. يُفضل استخدامها لبناء النسخة الأولية، ثم تحسين الكود لاحقاً باستخدام أدوات مثل Cursor.",
   },
   {
-    keys: ["debug", "error", "bug", "خطأ"],
+    keys: ["debug", "error", "bug", "خطأ", "مشكلة"],
     reply:
-      "When something breaks: read the error message first, ask the AI to explain it in plain words, then ask for a fix ONE step at a time instead of a full rewrite.",
+      "عند مواجهة أخطاء برمجية: اقرأ رسالة الخطأ أولاً، واطلب من الذكاء الاصطناعي تحليلها وتوضيحها. بعد ذلك، قم بتطبيق الإصلاحات بخطوات متسلسلة بدلاً من إعادة كتابة الكود بالكامل.",
   },
   {
-    keys: ["deploy", "نشر", "vercel", "netlify"],
+    keys: ["deploy", "نشر", "vercel", "netlify", "استضافة"],
     reply:
-      "To deploy: push your project to GitHub, connect the repo to Vercel or Netlify, and it builds automatically. Always test the live link before sharing it.",
+      "لنشر مشروعك: قم برفع الكود إلى GitHub، ثم اربط المستودع بمنصات مثل Vercel أو Netlify لتمكين البناء التلقائي (CI/CD). تأكد دائماً من اختبار الرابط الحي قبل اعتماده.",
   },
   {
-    keys: ["hello", "hi", "مرحبا", "هلا"],
-    reply: "BEEP BOOP! Hi there. Ask me about prompting, Cursor, Replit, debugging, or deploying.",
+    keys: ["hello", "hi", "مرحبا", "هلا", "السلام"],
+    reply: "أهلاً بك. أنا المساعد الافتراضي بيكسل. يمكنك سؤالي عن هندسة الأوامر (Prompting)، استخدام أدوات مثل Cursor و Replit، آليات تصحيح الأخطاء (Debugging)، أو طرق النشر (Deployment).",
   },
 ];
 
 const fallbacks = [
-  "Try being more specific: what's the goal, what tool are you using, and what should the result look like?",
-  "I don't have a canned answer for that one yet — try asking about prompting, Cursor, Replit, debugging, or deploying!",
-  "Good question! Break it into a smaller step and describe exactly what you want the AI to build first.",
+  "يُرجى توضيح سؤالك بمزيد من التفاصيل. حدد الهدف بوضوح والأداة التي تستخدمها ليتسنى لي تقديم الإجابة الأنسب.",
+  "عذراً، لا أملك إجابة دقيقة على هذا الاستفسار حالياً. يمكنك سؤالي عن أساسيات البرمجة التوليدية، هندسة الأوامر، أو أدوات مثل Cursor و Replit.",
+  "سؤال جيد. للحصول على أفضل نتيجة، حاول تقسيم المشكلة إلى خطوات أصغر ووصف ما تود إنجازه بشكل محدد.",
 ];
 
 function getPixelReply(query: string): string {

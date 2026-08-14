@@ -1,7 +1,16 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { ArrowLeft, ArrowRight, Target } from "lucide-react";
+import { curriculumData } from "@/data/curriculum";
 
 export default function Day5Page() {
+  const dayData = curriculumData.find((d) => d.id === 5);
+  const isLocked = dayData?.isLocked;
+
+  if (isLocked) {
+    redirect("/");
+  }
+
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex flex-col lg:flex-row gap-6 items-start justify-between mb-10">
@@ -18,46 +27,46 @@ export default function Day5Page() {
         </div>
       </div>
 
-      <div className="space-y-8 max-w-4xl mx-auto">
+      <div className="space-y-12 max-w-4xl mx-auto">
         <section className="relative">
-          <div className="absolute -left-2 top-4 w-6 h-12 bg-coral border-2 border-ink rounded-l z-0"></div>
-          <div className="bg-sage-light/30 border-3 border-ink rounded-xl p-6 shadow-retro relative z-10 ml-2">
-            <h2 className="font-heading text-2xl text-ink mb-3 flex items-center gap-2">
-              <Target size={24} className="text-coral" /> الهدف الرئيسي
-            </h2>
-            <p className="font-body text-lg text-ink font-semibold leading-relaxed">
-              إطلاق المشروع للعالم واستعراض قدراته.
-            </p>
-          </div>
-        </section>
+              <div className="absolute -left-2 top-4 w-6 h-12 bg-coral border-2 border-ink rounded-l z-0"></div>
+              <div className="bg-sage-light/30 border-3 border-ink rounded-xl p-6 shadow-retro relative z-10 ml-2">
+                <h2 className="font-heading text-2xl text-ink mb-3 flex items-center gap-2">
+                  <Target size={24} className="text-coral" /> الهدف الرئيسي
+                </h2>
+                <p className="font-body text-lg text-ink font-semibold leading-relaxed">
+                  إطلاق المشروع للعالم واستعراض قدراته.
+                </p>
+              </div>
+            </section>
 
-        <section className="bg-ink rounded-xl border-4 border-ink shadow-retro-lg overflow-hidden flex flex-col">
-          <div className="bg-cream-dark border-b-4 border-ink p-2 flex items-center justify-between" dir="ltr">
-             <div className="flex gap-2 pl-2">
-               <div className="w-3 h-3 rounded-full bg-coral border border-ink"></div>
-               <div className="w-3 h-3 rounded-full bg-mustard border border-ink"></div>
-               <div className="w-3 h-3 rounded-full bg-sage border border-ink"></div>
-             </div>
-             <div className="font-pixel text-[10px] text-ink pr-2">CHECKPOINTS.EXE</div>
-          </div>
-          <div className="p-6 bg-ink text-sage font-mono text-sm sm:text-base leading-relaxed space-y-4">
-            <div dir="ltr" className="text-dusty-blue mb-2">&gt; INIT MODULE_05...</div>
-            
-            <div className="flex items-start gap-3">
-              <span className="text-mustard shrink-0 mt-1" dir="ltr">[1]</span>
-              <p className="text-cream">استراتيجيات النشر الحديثة، وتوجيه وكيل عبر خط نشر كامل.</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-mustard shrink-0 mt-1" dir="ltr">[2]</span>
-              <p className="text-cream">المراقبة والتراجع والتحسين بعد الإطلاق.</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-mustard shrink-0 mt-1" dir="ltr">[3]</span>
-              <p className="text-cream">تلخيص قصة المشروع، والعرض النهائي المباشر.</p>
-            </div>
-            <div dir="ltr" className="text-coral mt-4 animate-pulse">&gt; _</div>
-          </div>
-        </section>
+            <section className="bg-ink rounded-xl border-4 border-ink shadow-retro-lg overflow-hidden flex flex-col">
+              <div className="bg-cream-dark border-b-4 border-ink p-2 flex items-center justify-between" dir="ltr">
+                 <div className="flex gap-2 pl-2">
+                   <div className="w-3 h-3 rounded-full bg-coral border border-ink"></div>
+                   <div className="w-3 h-3 rounded-full bg-mustard border border-ink"></div>
+                   <div className="w-3 h-3 rounded-full bg-sage border border-ink"></div>
+                 </div>
+                 <div className="font-pixel text-[10px] text-ink pr-2">CHECKPOINTS.EXE</div>
+              </div>
+              <div className="p-6 bg-ink text-sage font-mono text-sm sm:text-base leading-relaxed space-y-4">
+                <div dir="ltr" className="text-dusty-blue mb-2">&gt; INIT MODULE_05...</div>
+                
+                <div className="flex items-start gap-3">
+                  <span className="text-mustard shrink-0 mt-1" dir="ltr">[1]</span>
+                  <p className="text-cream">استراتيجيات النشر الحديثة، وتوجيه وكيل عبر خط نشر كامل.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-mustard shrink-0 mt-1" dir="ltr">[2]</span>
+                  <p className="text-cream">المراقبة والتراجع والتحسين بعد الإطلاق.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-mustard shrink-0 mt-1" dir="ltr">[3]</span>
+                  <p className="text-cream">تلخيص قصة المشروع، والعرض النهائي المباشر.</p>
+                </div>
+                <div dir="ltr" className="text-coral mt-4 animate-pulse">&gt; _</div>
+              </div>
+            </section>
       </div>
 
       <div className="flex justify-between items-center mt-12 border-t-2 border-ink/20 pt-6">

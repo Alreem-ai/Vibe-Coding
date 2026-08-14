@@ -92,17 +92,17 @@ export default function DayContent({ dayId, prevDay, nextDay }: DayContentProps)
               <h3 className="font-heading text-2xl text-ink mb-4 flex items-center gap-2">
                 <Clock className="text-coral" size={24} /> {t.day.schedule}
               </h3>
-              <div className="space-y-4 relative before:absolute before:inset-0 before:ms-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-ink before:border-r before:border-dashed before:border-cream-dark">
+              <div className="space-y-6 relative before:absolute before:inset-0 before:ms-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1.5 before:bg-ink/80 before:rounded-full">
                 {day.schedule.map((item, index) => (
                   <div
                     key={index}
                     className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
                   >
-                    <div className="flex items-center justify-center w-8 h-8 rounded-full border-2 border-ink bg-mustard text-ink shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-retro-sm z-10 font-pixel text-xs">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full border-2 border-ink bg-mustard text-ink shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-retro-sm z-10 font-pixel text-xs group-hover:scale-110 transition-transform duration-300">
                       {index + 1}
                     </div>
-                    <div className="w-[calc(100%-3rem)] md:w-[calc(50%-2rem)] p-4 rounded-xl border-2 border-ink bg-cream shadow-retro-sm">
-                      <div className="font-pixel text-[10px] text-coral mb-1">
+                    <div className="w-[calc(100%-3rem)] md:w-[calc(50%-2rem)] p-4 rounded-xl border-2 border-ink bg-cream shadow-retro-sm hover:-translate-y-1 hover:shadow-retro-lg transition-all duration-300 cursor-default">
+                      <div className="font-pixel text-xs text-coral mb-1">
                         {item.hour}
                       </div>
                       <h4 className="font-heading text-lg text-ink mb-2">

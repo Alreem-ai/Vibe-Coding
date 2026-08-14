@@ -9,7 +9,7 @@ export default function LocaleToggle() {
   return (
     <button
       onClick={toggleLocale}
-      className="retro-btn fixed top-3 right-4 z-30 bg-cream text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro flex items-center gap-2 hover:bg-cream-dark"
+      className="retro-btn bg-cream text-ink font-pixel text-xs px-3 py-2 border-2 border-ink rounded-lg shadow-retro flex items-center gap-2 hover:bg-cream-dark transition-transform hover:-translate-y-1"
       dir="ltr"
       aria-label="Toggle language"
     >
