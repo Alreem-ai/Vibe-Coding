@@ -87,10 +87,9 @@ const ar: Translations = {
   },
   mascot: {
     moods: [
-      "أتمتة المهام البرمجية تبدأ بكتابة موجه دقيق.",
-      "حوّل الأفكار المعقدة إلى هيكلة برمجية متكاملة.",
-      "الذكاء الاصطناعي لا يكتب الكود عنك، بل يكتبه معك.",
-      "هندسة الأوامر هي لغة البرمجة المستقبلية.",
+      "بيب بوب، اضغطوا على اسألوا بكسل لأساعدكم!",
+      "انتهت نقاط التوكنز حقتك.",
+      "لم تكتب البرومبت بكفاءة.",
     ],
   },
   moduleCard: {
@@ -165,10 +164,9 @@ const en: Translations = {
   },
   mascot: {
     moods: [
-      "Automating programming tasks begins with a precise prompt.",
-      "Transform complex ideas into a complete software architecture.",
-      "AI doesn't write code for you, it writes it with you.",
-      "Prompt engineering is the programming language of the future.",
+      "Beep boop, click on Ask Pixel so I can help you!",
+      "Your token points have run out.",
+      "You didn't write the prompt efficiently.",
     ],
   },
   moduleCard: {
@@ -177,16 +175,16 @@ const en: Translations = {
   },
   home: {
     systemStatus: "SYSTEM STATUS: ONLINE",
-    heroHeadingPrefix: "Just talk... and let the",
+    heroHeadingPrefix: "From just an idea... to",
     heroHeadingHighlight: "code",
-    heroHeadingSuffix: "write itself.",
+    heroHeadingSuffix: "in seconds.",
     heroParagraph:
-      'Welcome! The Generative Coding Program is an intensive 5-day training program that teaches you to build real applications through natural language, instead of hand-writing code.\n\nFrom the fundamentals of generative AI and prompt engineering, through building systems, web apps, and AI integrations, all the way to testing projects and actually deploying them to the web. Our little robot "Pixel" will guide you every step of the way.',
-    heroCta: "ESC / ENTR / SYNC",
-    talkToPixel: "TALK TO PIXEL",
-    terminalCommand: "TERMINAL COMMAND",
-    terminalReady: "> READY",
-    terminalPrompt: "> PROMPT + RUN // MODE: VIBE // TOOL: Gemini",
+      'Welcome! The Vibe Coding Program is an intensive 5-day training program that teaches you to build real applications through natural language, instead of hand-writing code.\n\nFrom the fundamentals of generative AI and prompt engineering, through building systems, web apps, and AI integrations, all the way to testing projects and actually deploying them to the web. Our little robot "Pixel" will guide you every step of the way.',
+    heroCta: "Start Now",
+    talkToPixel: "Talk to Pixel",
+    terminalCommand: "guest@vibe-coding: ~",
+    terminalReady: "[ONLINE]",
+    terminalPrompt: "> npx vibe-coding init --engine=gemini",
     helperBlob: "HELPER BLOB",
     catalogLabel: "CATALOG & MODULES",
     catalogHeading: "The Vibe Coding Path",

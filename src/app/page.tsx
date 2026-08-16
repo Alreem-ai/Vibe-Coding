@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { RefreshCcw, MessageCircle, X as XIcon } from "lucide-react";
+import { RefreshCcw, MessageCircle } from "lucide-react";
 import ModuleCard from "@/components/ModuleCard";
 import Mascot from "@/components/Mascot";
 import { curriculumData, localizeModule } from "@/data/curriculum";
@@ -21,6 +21,22 @@ function LinkedinMark(props: { size?: number; className?: string }) {
       aria-hidden="true"
     >
       <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z" />
+    </svg>
+  );
+}
+
+function TwitterXMark(props: { size?: number; className?: string }) {
+  const { size = 18, className } = props;
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
     </svg>
   );
 }
@@ -184,7 +200,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="retro-btn bg-cream text-ink font-pixel text-[10px] px-3 py-2 border-2 border-ink rounded-lg shadow-retro-sm flex items-center gap-1.5 hover:bg-cream-dark"
                 >
-                  <XIcon size={14} /> X
+                  <TwitterXMark size={14} /> X
                 </a>
               </div>
             </div>
