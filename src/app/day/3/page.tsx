@@ -107,10 +107,11 @@ export default function Day3Page() {
           </div>
 
           <p className="font-body text-lg font-bold text-ink mb-6">
-            هنا سنضيف "الذكاء" لتطبيقاتنا، ونتعلم كيف نتعامل مع الأخطاء التي تظهر عند ربط الأنظمة المعقدة.
+            هنا سنضيف "الذكاء" لتطبيقاتنا، ونتعلم كيف نتعامل مع الأخطاء ونستعين بأنظمة الوكلاء المتعددة.
           </p>
 
           <div className="space-y-4">
+            {/* Point 1 */}
             <div className="bg-white p-5 rounded-xl border-2 border-ink/10 shadow-sm flex flex-col md:flex-row items-start gap-4 hover:shadow-retro-sm transition-shadow">
               <div className="bg-mustard/30 text-mustard-dark p-3 rounded-xl shrink-0 mt-1"><Zap size={24} /></div>
               <div className="flex-grow">
@@ -120,7 +121,7 @@ export default function Day3Page() {
                     <span className="text-coral font-bold">الفكرة:</span> كيف نطلب من الوكيل (Agent) إضافة ميزات ذكية داخل تطبيقنا نفسه.
                   </p>
                   <p className="font-body text-lg font-semibold text-ink/90 leading-relaxed">
-                    <span className="text-sage font-bold">التطبيق:</span> بدلاً من بناء تطبيق عادي، سنجعل التطبيق نفسه يستخدم الذكاء الاصطناعي. أمثلة:
+                    <span className="text-sage font-bold">التطبيق:</span> بدلاً من بناء تطبيق تقليدي، سنجعل التطبيق نفسه يستخدم الذكاء الاصطناعي. أمثلة:
                   </p>
                   <ul className="space-y-3 text-ink/80 font-semibold font-body text-base">
                     <li className="flex items-center gap-2"><CheckCircle2 size={20} className="text-mustard shrink-0" /> ربط التطبيق بخدمات التعرف على الصور.</li>
@@ -130,16 +131,33 @@ export default function Day3Page() {
               </div>
             </div>
             
+            {/* Point 2 */}
             <div className="bg-white p-5 rounded-xl border-2 border-ink/10 shadow-sm flex flex-col md:flex-row items-start gap-4 hover:shadow-retro-sm transition-shadow">
-              <div className="bg-coral/20 text-coral-dark p-3 rounded-xl shrink-0 mt-1"><Bug size={24} /></div>
-              <div>
-                <h4 className="font-heading text-xl mb-3 text-ink">2. مراجعة المخرجات وإصلاح الأخطاء (Debugging)</h4>
+              <div className="bg-sage/20 text-sage-dark p-3 rounded-xl shrink-0 mt-1"><Layout size={24} /></div>
+              <div className="flex-grow">
+                <h4 className="font-heading text-xl mb-3 text-ink">2. أنظمة الوكلاء المتعددة (Multi-Agent Systems)</h4>
                 <div className="space-y-3">
                   <p className="font-body text-lg font-semibold text-ink/90 leading-relaxed">
-                    <span className="text-mustard-dark font-bold">الفكرة:</span> عند ربط الـ APIs، من الطبيعي أن تظهر أخطاء (مثل فشل الاتصال بقاعدة البيانات أو بيانات غير متوافقة).
+                    <span className="text-mustard-dark font-bold">الفكرة:</span> تقسيم المهام على عدة وكلاء متخصصين بدلاً من الاعتماد على وكيل واحد لتجنب تشتت النموذج وتداخل الأوامر.
                   </p>
                   <p className="font-body text-lg font-semibold text-ink/90 leading-relaxed">
-                    <span className="text-dusty-blue font-bold">التطبيق بأسلوب Vibe Coding:</span> كيف نكتشف الأخطاء في النظام ونوجه الوكيل لإصلاحها بنفسه من خلال الأوامر النصية والتوجيه الدقيق فقط (بدون التعديل اليدوي على الكود). سنتعلم كيف نقرأ رسائل الخطأ ونمررها للوكيل بشكل صحيح.
+                    <span className="text-dusty-blue font-bold">التطبيق:</span> سنتعامل مع الوكلاء كفريق تقني متكامل؛ وكيل يحلل المتطلبات، ووكيل يكتب الأكواد، ووكيل متخصص في الأمن السيبراني لاكتشاف الثغرات. دورك كمهندس هو إدارة وتوجيه هذه الأنظمة لضمان بناء منتج برمجي آمن ومترابط.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Point 3 */}
+            <div className="bg-white p-5 rounded-xl border-2 border-ink/10 shadow-sm flex flex-col md:flex-row items-start gap-4 hover:shadow-retro-sm transition-shadow">
+              <div className="bg-coral/20 text-coral-dark p-3 rounded-xl shrink-0 mt-1"><Bug size={24} /></div>
+              <div className="flex-grow">
+                <h4 className="font-heading text-xl mb-3 text-ink">3. مراجعة المخرجات وإصلاح الأخطاء (Smart Debugging)</h4>
+                <div className="space-y-3">
+                  <p className="font-body text-lg font-semibold text-ink/90 leading-relaxed">
+                    <span className="text-mustard-dark font-bold">الفكرة:</span> عند ظهور الأخطاء، الهدف ليس فقط إصلاح الخطأ، بل "فهم" المشكلة برمجياً والتعلم منها.
+                  </p>
+                  <p className="font-body text-lg font-semibold text-ink/90 leading-relaxed">
+                    <span className="text-dusty-blue font-bold">آلية التطبيق:</span> نكتشف الأخطاء ونمررها للوكيل بتوجيه هندسي دقيق: (حلل رسالة الخطأ، اشرح لي السبب الجذري، ثم زودني بالكود المصحح). هذا يضمن أننا نستوعب المنطق البرمجي خلف النظام، ولا نكتفي بمجرد النسخ واللصق بشكل أعمى.
                   </p>
                 </div>
               </div>

@@ -30,7 +30,7 @@ export interface CurriculumModule {
 export const curriculumData: CurriculumModule[] = [
   {
     id: 1,
-     isLocked: true,
+  
     icon: MessageSquare,
     colorClass: "dusty-blue",
     tapeColor: "tape-pink",
@@ -63,37 +63,36 @@ export const curriculumData: CurriculumModule[] = [
       tools: ["Claude Code", "Cursor / VS Code", "أساسيات Git والـ Terminal"],
     },
     en: {
-      title: "Introduction to AI and Prompt Engineering (Thinking Like an AI Tech Lead)",
-      shortTitle: "The Art of Prompting",
-      goal: "Understand the fundamentals of generative AI, and grasp that it needs precise, well-thought-out instructions to produce correct code.",
+      title: "Basics of Prompt Engineering",
+      shortTitle: "Prompt Engineering",
+      goal: "Understand generative AI, and write precise, thoughtful prompts to have it code on your behalf correctly.",
       points: [
-        "Introduction to generative AI: how models actually work, and the difference between hand-writing code and generating it.",
-        "The art of talking to the machine: crafting prompts around clear technical constraints.",
-        "Hands-on practice: writing prompts to generate quick UI components and reviewing the model's output.",
+        "Introduction to generative AI: understanding models and the difference between manual coding and code generation.",
+        "The art of talking to the machine: crafting prompts based on clear technical constraints.",
+        "Hands-on practice: writing prompts to generate quick software components and monitoring the response.",
       ],
       schedule: [
         {
-          hour: "Hour 1",
+          hour: "First Hour",
           title: "How Does AI Understand Language? (LLMs)",
-          details: "The basics of tokens, and how Transformer models work under the hood.",
+          details: "The basic concept of Tokens, and how Transformer models work.",
         },
         {
-          hour: "Hour 2",
+          hour: "Second Hour",
           title: "The Starting Point of Vibe Coding: Writing Prompts",
-          details: "Prompt structure (tone, context, task, output), technical constraints, and steering coding style.",
+          details: "Prompt structure (tone, context, task, outputs), technical constraints, and steering the coding style.",
         },
         {
-          hour: "Hour 3",
-          title: "Hands-On Practice",
-          details: "Writing a prompt to generate a quick interface, then iterative refinement.",
+          hour: "Third Hour",
+          title: "Hands-on Practice",
+          details: "Writing a prompt to generate a quick UI, and iterative refinement.",
         },
       ],
-      tools: ["Claude Code", "Cursor / VS Code", "Git & Terminal basics"],
+      tools: ["Claude Code", "Cursor / VS Code", "Git & Terminal Basics"],
     },
   },
   {
     id: 2,
-     isLocked: true,
     icon: Wrench,
     colorClass: "sage",
     tapeColor: "tape-sage",
@@ -110,16 +109,16 @@ export const curriculumData: CurriculumModule[] = [
       tools: ["Claude", "مكتبات برومبت", "Structured output / JSON mode"],
     },
     en: {
-      title: "Advanced Prompt Engineering (for Code Generation)",
-      shortTitle: "Generation Tools",
-      goal: "Learn advanced prompt structures and how to precisely control AI output.",
+      title: "Business Requirements & Agentic AI",
+      shortTitle: "Agents & BRD",
+      goal: "Write a structured Business Requirements Document (BRD) and direct AI Agents to build systems in dev environments.",
       points: [
         "Prompt structures (context, constraints, examples).",
-        "Chain-of-thought reasoning and breaking tasks down into steps.",
-        "System prompts and reusable templates, and steering architecture decisions through prompting.",
+        "Chain-of-thought reasoning and breaking down tasks.",
+        "System prompts, reusable templates, and steering architecture decisions via prompting.",
       ],
       schedule: [],
-      tools: ["Claude", "Prompt libraries", "Structured output / JSON mode"],
+      tools: ["Claude", "Prompt Libraries", "Structured output / JSON mode"],
     },
   },
   {
@@ -127,7 +126,6 @@ export const curriculumData: CurriculumModule[] = [
     icon: Code,
     colorClass: "coral",
     tapeColor: "tape-yellow",
-    isLocked: true,
     lockedStyle: "warning",
     ar: {
       title: "تصحيح الأخطاء وربط الأنظمة (APIs & Integration)",
@@ -142,16 +140,16 @@ export const curriculumData: CurriculumModule[] = [
       tools: ["Claude Agent SDK", "خوادم MCP", "وكلاء فرعية وتفويض مهام"],
     },
     en: {
-      title: "Building with Agentic AI (AI Agent Workflows)",
-      shortTitle: "Building the Project",
-      goal: "Design and implement AI agent systems capable of handling complex, multi-step tasks.",
+      title: "Debugging & Systems Integration (APIs)",
+      shortTitle: "APIs & Debugging",
+      goal: "Expand app capabilities by connecting it to external data and APIs, and debug automatically using agentic workflows.",
       points: [
         "The difference between an agent and a chatbot, and designing multi-agent workflows.",
         "Using tools and function calling, and coordinating and reviewing parallel agents.",
-        "Guardrails to prevent unpredictable or unsafe agent behavior.",
+        "Guardrails to prevent unpredictable behaviors.",
       ],
       schedule: [],
-      tools: ["Claude Agent SDK", "MCP servers", "Subagents & task delegation"],
+      tools: ["Claude Agent SDK", "MCP Servers", "Subagents & Task Delegation"],
     },
   },
   {
@@ -159,7 +157,7 @@ export const curriculumData: CurriculumModule[] = [
     icon: Rocket,
     colorClass: "mustard",
     tapeColor: "tape-pink",
-    isLocked: true,
+   //fkdjvkl
     lockedStyle: "encrypted",
     ar: {
       title: "النشر السحابي وتكامل النظام (Deployment & Integration)",
@@ -174,16 +172,16 @@ export const curriculumData: CurriculumModule[] = [
       tools: ["Vitest / Jest / Playwright", "خطوط CI", "وكلاء مراجعة الكود"],
     },
     en: {
-      title: "Automated Testing and AI-Assisted Debugging",
-      shortTitle: "Debugging & Deployment",
-      goal: "Ensure the quality of AI-generated code, and learn to find and fix bugs systematically.",
+      title: "Cloud Deployment & System Integration",
+      shortTitle: "Cloud Deployment",
+      goal: "Conclude the Software Development Life Cycle (SDLC) by moving from local dev to live platforms like Vercel.",
       points: [
         "Generating test suites, and AI-assisted debugging.",
-        "Code review workflows, and continuous verification (linting / type-checking).",
+        "Code review workflows, and continuous verification (linting/type-checking).",
         "Building confidence through evidence, not assumptions.",
       ],
       schedule: [],
-      tools: ["Vitest / Jest / Playwright", "CI pipelines", "Code review agents"],
+      tools: ["Vitest / Jest / Playwright", "CI Pipelines", "Code Review Agents"],
     },
   },
   {
@@ -206,16 +204,16 @@ export const curriculumData: CurriculumModule[] = [
       tools: ["Vercel / Netlify", "GitHub Actions", "العرض والتقديم"],
     },
     en: {
-      title: "Deployment and the Final Demo (Make It Actually Work)",
-      shortTitle: "Launch & Demo",
-      goal: "Ship the project to the world and showcase what it can do.",
+      title: "Project Showcase & Evaluation",
+      shortTitle: "Final Demo",
+      goal: "Showcase completed projects, share experiences, and celebrate launching applications to users.",
       points: [
         "Modern deployment strategies, and directing an agent through a full deployment pipeline.",
         "Monitoring, rollbacks, and post-launch improvements.",
-        "Telling the project's story, and delivering a live final demo.",
+        "Summarizing the project's story, and live final presentations.",
       ],
       schedule: [],
-      tools: ["Vercel / Netlify", "GitHub Actions", "Presenting & storytelling"],
+      tools: ["Vercel / Netlify", "GitHub Actions", "Presentation Skills"],
     },
   },
 ];

@@ -69,7 +69,7 @@ export default function Mascot() {
     });
   };
 
-  const mood = { ...moodShapes[moodIdx], text: t.mascot.moods[moodIdx] };
+  const mood = { ...moodShapes[moodIdx], text: t.mascot.moods[moodIdx % t.mascot.moods.length] };
 
   return (
     <div
@@ -78,7 +78,10 @@ export default function Mascot() {
       className="relative z-10 flex flex-col items-center cursor-pointer group"
       onClick={handleMascotClick}
     >
-      {/* Speech bubble removed based on user preference */}
+      <div className="absolute -top-16 bg-cream text-ink font-pixel text-xs p-3 rounded-xl border-3 border-ink shadow-retro z-30 transition-all duration-300 transform scale-100 max-w-[220px] text-center leading-relaxed">
+        &quot;{mood.text}&quot;
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-cream border-r-3 border-b-3 border-ink rotate-45"></div>
+      </div>
       <div className="w-2 h-8 bg-ink rounded-t relative flex justify-center mt-6">
         <div
           className="absolute -top-3 w-4 h-4 rounded-full border-2 border-ink animate-bounce shadow-md"
