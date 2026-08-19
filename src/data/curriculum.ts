@@ -155,6 +155,7 @@ export const curriculumData: CurriculumModule[] = [
   {
     id: 4,
     //djd
+    //fghjkl;'cvbnm
     icon: Rocket,
     colorClass: "mustard",
     tapeColor: "tape-pink",
