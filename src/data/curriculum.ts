@@ -157,7 +157,7 @@ export const curriculumData: CurriculumModule[] = [
     icon: Rocket,
     colorClass: "mustard",
     tapeColor: "tape-pink",
-   //fkdjvkl
+  
     lockedStyle: "encrypted",
     ar: {
       title: "النشر السحابي وتكامل النظام (Deployment & Integration)",
